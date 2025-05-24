@@ -16,8 +16,14 @@ import AboutPage from './pages/AboutPage'; // Corrected import path
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
 import DisclaimerPage from './pages/DisclaimerPage';
+// Import new tool pages
+import CaseConverterPage from './features/caseConverter/CaseConverterPage';
+import CharWordCounterPage from './features/charWordCounter/CharWordCounterPage';
+import UnixTimestampConverterPage from './features/unixTimestampConverter/UnixTimestampConverterPage';
 
 import CookieBanner from './components/CookieBanner';
+import HomePage from './components/home/HomePage'; // Moved HomePage
+import ToolCard from './components/home/ToolCard'; // Moved ToolCard (if HomePage doesn't import it directly)
 
 const pageMetadata = {
   home: {
@@ -84,111 +90,118 @@ const pageMetadata = {
     title: 'Disclaimer - DevKit | DevGearHub',
     description: 'Disclaimer for DevGearHub. Information provided on this site is for general purposes only. Use our tools at your own risk.',
   },
+  'case-converter': {
+    title: 'Case Converter - Online Text Tool | DevKit | DevGearHub',
+    description: 'Convert text between various case styles like camelCase, PascalCase, snake_case, kebab-case, and more with our free online tool on DevGearHub.',
+  },
+  'char-word-counter': {
+    title: 'Character & Word Counter - Online Tool | DevKit | DevGearHub',
+    description: 'Quickly count characters, words, lines, and sentences in your text. A handy free utility for writers and developers on DevGearHub.',
+  },
+  'unix-timestamp-converter': {
+    title: 'Unix Timestamp Converter - Online Tool | DevKit | DevGearHub',
+    description: 'Convert Unix timestamps (seconds or milliseconds) to human-readable dates and vice-versa. Includes current timestamp generation on DevGearHub.',
+  },
+  'json-formatter': { // Assuming this was missed in the previous context, adding it back if needed.
+    title: 'JSON Formatter & Validator - Online Tool | DevKit | DevGearHub',
+    description: 'Easily format, pretty-print, and validate your JSON data online. Our tool helps ensure your JSON is well-formed and readable on DevGearHub.',
+  }
 
 };
 
 const toolData = [
-  { id: 'json-formatter', title: 'JSON Formatter', description: 'Beautify and validate JSON documents quickly and easily.', icon: 'fas fa-code', color: 'text-purple-500' },
-  { id: 'date-calculator', title: 'Date Calculator', description: 'Calculate date differences, add/subtract days, and more.', icon: 'fas fa-calendar-alt', color: 'text-blue-500' },
-  { id: 'cron-generator', title: 'Cron Generator', description: 'Visually build complex cron expressions for scheduling.', icon: 'fas fa-clock', color: 'text-green-500' },
-  { id: 'regex-tester', title: 'RegEx Tester', description: 'Test and debug regular expressions with real-time results.', icon: 'fas fa-terminal', color: 'text-red-500' },
-  { id: 'text-diff', title: 'Text Diff', description: 'Compare two text snippets to find differences easily.', icon: 'fas fa-exchange-alt', color: 'text-yellow-500' },
-  { id: 'csv-to-json', title: 'CSV to JSON', description: 'Convert CSV data into a valid JSON format.', icon: 'fas fa-file-csv', color: 'text-teal-500' },
-  { id: 'json-to-csv', title: 'JSON to CSV', description: 'Transform JSON data back into a CSV format.', icon: 'fas fa-file-code', color: 'text-indigo-500' },
-  { id: 'url-encoder-decoder', title: 'URL Encoder/Decoder', description: 'Encode or decode URL components for web safety.', icon: 'fas fa-link', color: 'text-orange-500' },
-  { id: 'base64-encoder-decoder', title: 'Base64 Encoder/Decoder', description: 'Encode or decode strings to/from Base64 format.', icon: 'fas fa-lock', color: 'text-pink-500' },
-  { id: 'markdown-previewer', title: 'Markdown Previewer', description: 'Write Markdown and see the HTML output in real-time.', icon: 'fab fa-markdown', color: 'text-gray-500' },
-  // Add TimestampConverter once its page is created
-  // { id: 'timestamp-converter', title: 'Timestamp Converter', description: 'Convert Unix timestamps to human-readable dates and vice-versa.', icon: 'fas fa-history', color: 'text-cyan-500' },
+  {
+    id: 'json-formatter',
+    name: 'JSON Formatter',
+    description: 'Beautify and validate JSON documents quickly and easily.',
+    icon: <i className="fas fa-code text-3xl text-purple-500"></i>,
+    category: "Data Converters"
+  },
+  {
+    id: 'date-calculator',
+    name: 'Date Calculator',
+    description: 'Calculate date differences, add/subtract days, and more.',
+    icon: <i className="fas fa-calendar-alt text-3xl text-blue-500"></i>,
+    category: "Date & Time"
+  },
+  {
+    id: 'cron-generator',
+    name: 'Cron Generator',
+    description: 'Visually build complex cron expressions for scheduling.',
+    icon: <i className="fas fa-clock text-3xl text-green-500"></i>,
+    category: "Utilities"
+  },
+  {
+    id: 'regex-tester',
+    name: 'RegEx Tester',
+    description: 'Test and debug regular expressions with real-time results.',
+    icon: <i className="fas fa-terminal text-3xl text-red-500"></i>,
+    category: "Text Manipulation"
+  },
+  {
+    id: 'text-diff',
+    name: 'Text Diff',
+    description: 'Compare two text snippets to find differences easily.',
+    icon: <i className="fas fa-exchange-alt text-3xl text-yellow-500"></i>,
+    category: "Text Manipulation"
+  },
+  {
+    id: 'csv-to-json',
+    name: 'CSV to JSON',
+    description: 'Convert CSV data into a valid JSON format.',
+    icon: <i className="fas fa-file-csv text-3xl text-teal-500"></i>,
+    category: "Data Converters"
+  },
+  {
+    id: 'json-to-csv',
+    name: 'JSON to CSV',
+    description: 'Transform JSON data back into a CSV format.',
+    icon: <i className="fas fa-file-code text-3xl text-indigo-500"></i>,
+    category: "Data Converters"
+  },
+  {
+    id: 'url-encoder-decoder',
+    name: 'URL Encoder/Decoder',
+    description: 'Encode or decode URL components for web safety.',
+    icon: <i className="fas fa-link text-3xl text-orange-500"></i>,
+    category: "Web Utilities"
+  },
+  {
+    id: 'base64-encoder-decoder',
+    name: 'Base64 Encoder/Decoder',
+    description: 'Encode or decode strings to/from Base64 format.',
+    icon: <i className="fas fa-lock text-3xl text-pink-500"></i>,
+    category: "Encoders & Decoders"
+  },
+  {
+    id: 'markdown-previewer',
+    name: 'Markdown Previewer',
+    description: 'Write Markdown and see the HTML output in real-time.',
+    icon: <i className="fab fa-markdown text-3xl text-gray-600 dark:text-gray-400"></i>,
+    category: "Text Manipulation"
+  },
+  {
+    id: 'case-converter',
+    name: 'Case Converter',
+    description: "Convert text between various case styles (camelCase, PascalCase, snake_case, etc.).",
+    icon: <i className="fas fa-font text-3xl text-lime-500"></i>, // Changed icon for variety
+    category: "Text Manipulation"
+  },
+  {
+    id: 'char-word-counter',
+    name: 'Character & Word Counter',
+    description: "Count characters, words, lines, and sentences in your text.",
+    icon: <i className="fas fa-calculator text-3xl text-amber-500"></i>, // Changed icon for variety
+    category: "Text Manipulation"
+  },
+  {
+    id: 'unix-timestamp-converter',
+    name: 'Unix Timestamp Converter',
+    description: "Convert Unix timestamps to human-readable dates and vice-versa.",
+    icon: <i className="fas fa-history text-3xl text-cyan-500"></i>, // Changed icon for variety
+    category: "Date & Time"
+  }
 ];
-
-function ToolCard({ tool, onNavigate }) {
-  return (
-    <a
-      href="#"
-      onClick={(e) => {
-        e.preventDefault();
-        onNavigate(tool.id);
-      }}
-      className="tool-card bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 flex flex-col items-center text-center border border-gray-200 dark:border-gray-700"
-    >
-      <i className={`${tool.icon} ${tool.color} text-4xl mb-4`}></i>
-      <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">{tool.title}</h3>
-      <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">{tool.description}</p>
-    </a>
-  );
-}
-
-function HomePage({ onNavigate, searchTerm, onSearchChange }) {
-  const filteredTools = toolData.filter(tool =>
-    tool.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    tool.description.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  return (
-    <>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-purple-500 to-indigo-600 dark:from-purple-700 dark:to-indigo-800 text-white py-16 px-4 sm:px-6 lg:px-8 text-center rounded-lg my-8 mx-4 md:mx-auto max-w-6xl shadow-xl">
-        <h2 className="text-4xl sm:text-5xl font-extrabold mb-4 leading-tight">
-          Your Essential Online Dev Tools
-        </h2>
-        <p className="text-lg sm:text-xl mb-8 opacity-90">
-          Fast, Free, and Reliable Utilities for Everyday Coding Tasks.
-        </p>
-        <div className="max-w-xl mx-auto">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search for a tool (e.g., JSON, Date, Regex)..."
-              className="w-full p-3 pl-10 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-300 shadow-lg"
-              value={searchTerm}
-              onChange={onSearchChange}
-            />
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <i className="fas fa-search text-gray-400"></i>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Tools Grid */}
-      <main className="flex-grow container mx-auto px-4 py-8">
-        <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-10">Explore Our Tools</h2>
-        {filteredTools.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredTools.map(tool => (
-              <ToolCard key={tool.id} tool={tool} onNavigate={onNavigate} />
-            ))}
-          </div>
-        ) : (
-          <p className="text-center text-gray-600 dark:text-gray-400 text-xl">No tools found matching your search.</p>
-        )}
-      </main>
-
-      {/* Why Choose DevKit Section */}
-      <section className="bg-gray-100 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8 text-center mt-12 rounded-lg mx-4 md:mx-auto max-w-6xl shadow-inner">
-        <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Why Choose DevKit?</h3>
-        <div className="flex flex-col md:flex-row justify-center items-start md:space-x-8 space-y-6 md:space-y-0">
-          <div className="flex flex-col items-center">
-            <i className="fas fa-bolt text-purple-500 text-3xl mb-3"></i>
-            <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">Blazing Fast</p>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">Instant results with client-side processing.</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <i className="fas fa-shield-alt text-green-500 text-3xl mb-3"></i>
-            <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">Privacy-Focused</p>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">Your data stays in your browser. No server uploads.</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <i className="fas fa-infinity text-blue-500 text-3xl mb-3"></i>
-            <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">Always Free</p>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">Access all tools without any cost or subscriptions.</p>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-};
 
 // Main App component
 function App() {
@@ -261,7 +274,7 @@ function App() {
     const renderContent = () => {
         switch (currentPage) {
             case 'home':
-                return <HomePage onNavigate={navigateToTool} searchTerm={searchTerm} onSearchChange={handleSearchChange} />;
+                return <HomePage toolData={toolData} onNavigate={navigateToTool} searchTerm={searchTerm} onSearchChange={handleSearchChange} />;
             case 'json-formatter':
                 return <JsonFormatterPage />;
             case 'date-calculator':
@@ -292,6 +305,12 @@ function App() {
                 return <TermsOfServicePage />;
             case 'disclaimer':
                 return <DisclaimerPage />;
+            case 'case-converter':
+                return <CaseConverterPage />;
+            case 'char-word-counter':
+                return <CharWordCounterPage />;
+            case 'unix-timestamp-converter':
+                return <UnixTimestampConverterPage />;
             default:
                 return null;
         }
@@ -332,12 +351,12 @@ function App() {
             {/* Footer */}
             <footer className="bg-gray-800 dark:bg-gray-900 text-gray-300 py-6 px-4 sm:px-6 lg:px-8 mt-8 rounded-t-lg">
                 <div className="container mx-auto flex flex-col md:flex-row justify-between items-center text-sm">
-                    <p>&copy; 2025 DevKit. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} DevKit. All rights reserved.</p>
                     <div className="flex space-x-4 mt-4 md:mt-0">
                         <a href="#" onClick={() => navigateToTool('privacy-policy')} className="hover:text-white transition-colors duration-200">Privacy Policy</a>
                         <a href="#" onClick={() => navigateToTool('terms-of-service')} className="hover:text-white transition-colors duration-200">Terms of Service</a>
-                        <a href="#" className="hover:text-white transition-colors duration-200">Suggest a Tool</a>
-                        <a href="https://github.com/yourusername/your-repo" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200">
+                        <a href="mailto:timesbytes@gmail.com?subject=DevKit Tool Suggestion" className="hover:text-white transition-colors duration-200">Suggest a Tool</a>
+                        <a href="https://github.com/vivekbyte/devkit-app" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200"> {/* Replace with your actual repo URL */}
                             <i className="fab fa-github text-lg"></i>
                         </a>
                     </div>
@@ -349,116 +368,6 @@ function App() {
                 />
             )}
         </div>
-    );
-}
-
-// Markdown Previewer Component
-function MarkdownPreviewer() {
-    const [markdownInput, setMarkdownInput] = useState('');
-    const [htmlOutput, setHtmlOutput] = useState('');
-    const [message, setMessage] = useState('');
-
-    useEffect(() => {
-        const renderMarkdown = async () => {
-            // Dynamically import markdown-it if not already available
-            if (typeof window.markdownit === 'undefined') {
-                await new Promise((resolve, reject) => {
-                    const script = document.createElement('script');
-                    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/markdown-it/14.1.0/markdown-it.min.js';
-                    script.onload = () => {
-                        // markdown-it attaches to window.markdownit
-                        if (typeof window.markdownit === 'undefined') {
-                            console.warn("markdown-it loaded but not found on window.markdownit. This may cause issues.");
-                        }
-                        resolve();
-                    };
-                    script.onerror = reject;
-                    document.head.appendChild(script);
-                });
-            }
-
-            if (window.markdownit) {
-                const md = window.markdownit();
-                setHtmlOutput(md.render(markdownInput));
-            }
-        };
-        renderMarkdown();
-    }, [markdownInput]); // Re-render HTML whenever markdownInput changes
-
-    const clearFields = () => {
-        setMarkdownInput('');
-        setHtmlOutput('');
-        setMessage('');
-    };
-
-    const copyToClipboard = () => {
-        if (htmlOutput) {
-            const textarea = document.createElement('textarea');
-            textarea.value = htmlOutput;
-            document.body.appendChild(textarea);
-            textarea.select();
-            try {
-                document.execCommand('copy');
-                setMessage('Copied to clipboard!');
-            } catch (err) {
-                console.error('Failed to copy text: ', err);
-                setMessage('Failed to copy.');
-            }
-            document.body.removeChild(textarea);
-        } else {
-            setMessage('Nothing to copy!');
-        }
-    };
-
-    return (
-        <main className="flex-grow container mx-auto px-4 py-8">
-            <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">Markdown Previewer</h2>
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8 border border-gray-200 dark:border-gray-700">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Input Markdown */}
-                    <div>
-                        <label htmlFor="markdown-input" className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">Input Markdown</label>
-                        <textarea
-                            id="markdown-input"
-                            className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-gray-500 focus:border-gray-500 h-64 resize-y font-mono text-sm"
-                            placeholder={`# Hello DevKit!
-This is **Markdown**.
-- Item 1
-- Item 2`}
-                            value={markdownInput}
-                            onChange={(e) => setMarkdownInput(e.target.value)}
-                        ></textarea>
-                    </div>
-
-                    {/* Output HTML */}
-                    <div>
-                        <label htmlFor="html-output" className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">Rendered HTML</label>
-                        <div
-                            id="html-output"
-                            className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 h-64 overflow-auto font-sans text-base"
-                            dangerouslySetInnerHTML={{ __html: htmlOutput }}
-                        ></div>
-                        {message && <p className="text-green-500 text-sm mt-2">{message}</p>}
-                    </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="mt-6 flex flex-wrap justify-center gap-4">
-                    <button
-                        onClick={copyToClipboard}
-                        className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-200"
-                    >
-                        <i className="fas fa-copy mr-2"></i> Copy HTML
-                    </button>
-                    <button
-                        onClick={clearFields}
-                        className="px-6 py-3 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-200 dark:bg-gray-600 dark:text-gray-100 dark:hover:bg-gray-500"
-                    >
-                        <i className="fas fa-times mr-2"></i> Clear
-                    </button>
-                </div>
-            </div>
-        </main>
     );
 }
 
