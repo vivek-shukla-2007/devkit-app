@@ -12,6 +12,42 @@ import JsonToCsvPage from './features/jsonToCsv/JsonToCsvPage';
 
 // TODO: Import other feature pages as they are created/moved
 
+const pageMetadata = {
+  home: {
+    title: 'DevKit - Your Essential Online Dev Tools | DevGearHub',
+    description: 'A collection of fast, free, and reliable utilities for everyday coding tasks. JSON formatter, date calculator, cron generator, Base64, URL tools, and more on DevGearHub.',
+  },
+  'json-formatter': {
+    title: 'Online JSON Formatter & Validator - DevKit | DevGearHub',
+    description: 'Beautify, validate, and format your JSON documents quickly and easily with our online JSON formatter tool on DevGearHub.',
+  },
+  'date-calculator': {
+    title: 'Date Calculator - Add, Subtract, Find Difference | DevKit | DevGearHub',
+    description: 'Calculate date differences, add or subtract days, weeks, or months from a date with our versatile date calculator on DevGearHub.',
+  },
+  'cron-generator': {
+    title: 'Cron Expression Generator - Visual Builder | DevKit | DevGearHub',
+    description: 'Visually build and understand complex cron expressions for scheduling tasks with our easy-to-use cron generator on DevGearHub.',
+  },
+  'regex-tester': {
+    title: 'Online RegEx Tester & Debugger | DevKit | DevGearHub',
+    description: 'Test and debug your regular expressions in real-time with highlighting and explanations using our online RegEx tester on DevGearHub.',
+  },
+  'text-diff': {
+    title: 'Text Compare Tool - Find Differences | DevKit | DevGearHub',
+    description: 'Easily compare two text snippets to find differences. Our text diff tool highlights additions and removals side-by-side on DevGearHub.',
+  },
+  'csv-to-json': {
+    title: 'CSV to JSON Converter - Online Tool | DevKit | DevGearHub',
+    description: 'Convert your CSV data into a structured JSON format quickly and accurately with our online CSV to JSON converter on DevGearHub.',
+  },
+  'json-to-csv': {
+    title: 'JSON to CSV Converter - Online Tool | DevKit | DevGearHub',
+    description: 'Transform JSON data, including arrays of objects, into CSV format with our reliable online JSON to CSV converter on DevGearHub.',
+  },
+  // TODO: Add metadata for 'url-encoder-decoder', 'base64-encoder-decoder', 'markdown-previewer'
+};
+
 // Main App component
 function App() {
     // State to manage the current page/tool displayed
@@ -34,6 +70,21 @@ function App() {
         }
         localStorage.setItem('theme', theme); // Save theme preference
     }, [theme]);
+
+    // Effect to update page title and meta description
+    useEffect(() => {
+        const metadata = pageMetadata[currentPage] || pageMetadata.home; // Fallback to home metadata
+        document.title = metadata.title;
+
+        let metaDescriptionTag = document.querySelector('meta[name="description"]');
+        if (!metaDescriptionTag) {
+            // If it doesn't exist, create it
+            metaDescriptionTag = document.createElement('meta');
+            metaDescriptionTag.setAttribute('name', 'description');
+            document.head.appendChild(metaDescriptionTag);
+        }
+        metaDescriptionTag.setAttribute('content', metadata.description);
+    }, [currentPage]);
 
     // Function to toggle theme
     const toggleTheme = () => {
