@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* You can add your own custom base styles or component styles below */
+body {
+  font-family: 'Inter', sans-serif; /* Matches your tailwind.config.js */
+}
