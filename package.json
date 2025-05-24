@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "csv-parse": "^5.6.0",
+    "diff": "^8.0.2",
     "dompurify": "^3.2.6",
     "json-2-csv": "^5.5.9",
     "markdown-it": "^14.1.0",

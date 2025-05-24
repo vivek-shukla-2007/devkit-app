@@ -5,6 +5,7 @@ import JsonFormatterPage from './features/jsonFormatter/JsonFormatterPage';
 import DateCalculatorPage from './features/dateCalculator/DateCalculatorPage';
 import CronGeneratorPage from './features/cronGenerator/CronGeneratorPage';
 import RegexTesterPage from './features/regexTester/RegexTesterPage';
+import TextDiffPage from './features/textDiff/TextDiffPage';
 
 
 // TODO: Import other feature pages as they are created/moved
@@ -173,9 +174,9 @@ function App() {
             case 'cron-generator':
                 return <CronGeneratorPage  />;
             case 'regex-tester':
-                return <RegexTesterPage />;
+                return <RegexTesterPage  />;
             case 'text-diff':
-                return <TextDiff />;
+                return <TextDiffPage />;
             case 'csv-to-json':
                 return <CsvToJson />;
             case 'json-to-csv':
@@ -238,139 +239,6 @@ function App() {
                 </div>
             </footer>
         </div>
-    );
-}
-
-
-
-
-
-// Text Diff Component
-function TextDiff() {
-    const [text1, setText1] = useState('');
-    const [text2, setText2] = useState('');
-    const [diffOutput, setDiffOutput] = useState('');
-    const [message, setMessage] = useState('');
-
-    const calculateDiff = () => {
-        setMessage('');
-        const lines1 = text1.split('\n');
-        const lines2 = text2.split('\n');
-        const output = [];
-
-        // Simple line-by-line diff
-        const maxLength = Math.max(lines1.length, lines2.length);
-
-        for (let i = 0; i < maxLength; i++) {
-            const line1 = lines1[i] !== undefined ? lines1[i] : '';
-            const line2 = lines2[i] !== undefined ? lines2[i] : '';
-
-            if (line1 === line2) {
-                output.push(`  ${line1}`);
-            } else {
-                if (line1 !== '') {
-                    output.push(`- ${line1}`);
-                }
-                if (line2 !== '') {
-                    output.push(`+ ${line2}`);
-                }
-            }
-        }
-        setDiffOutput(output.join('\n'));
-    };
-
-    const clearFields = () => {
-        setText1('');
-        setText2('');
-        setDiffOutput('');
-        setMessage('');
-    };
-
-    const copyToClipboard = () => {
-        if (diffOutput) {
-            const textarea = document.createElement('textarea');
-            textarea.value = diffOutput;
-            document.body.appendChild(textarea);
-            textarea.select();
-            try {
-                document.execCommand('copy');
-                setMessage('Copied to clipboard!');
-            } catch (err) {
-                console.error('Failed to copy text: ', err);
-                setMessage('Failed to copy.');
-            }
-            document.body.removeChild(textarea);
-        } else {
-            setMessage('Nothing to copy!');
-        }
-    };
-
-    return (
-        <main className="flex-grow container mx-auto px-4 py-8">
-            <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">Text Diff</h2>
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8 border border-gray-200 dark:border-gray-700">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Input Text 1 */}
-                    <div>
-                        <label htmlFor="text1-input" className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">Original Text</label>
-                        <textarea
-                            id="text1-input"
-                            className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-yellow-500 focus:border-yellow-500 h-64 resize-y font-mono text-sm"
-                            placeholder="Enter the first text snippet here..."
-                            value={text1}
-                            onChange={(e) => setText1(e.target.value)}
-                        ></textarea>
-                    </div>
-
-                    {/* Input Text 2 */}
-                    <div>
-                        <label htmlFor="text2-input" className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">Modified Text</label>
-                        <textarea
-                            id="text2-input"
-                            className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-yellow-500 focus:border-yellow-500 h-64 resize-y font-mono text-sm"
-                            placeholder="Enter the second text snippet here..."
-                            value={text2}
-                            onChange={(e) => setText2(e.target.value)}
-                        ></textarea>
-                    </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="mt-6 flex flex-wrap justify-center gap-4">
-                    <button
-                        onClick={calculateDiff}
-                        className="px-6 py-3 bg-yellow-600 text-white font-semibold rounded-lg shadow-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-200"
-                    >
-                        <i className="fas fa-exchange-alt mr-2"></i> Compare
-                    </button>
-                    <button
-                        onClick={copyToClipboard}
-                        className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-200"
-                    >
-                        <i className="fas fa-copy mr-2"></i> Copy Output
-                    </button>
-                    <button
-                        onClick={clearFields}
-                        className="px-6 py-3 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-200 dark:bg-gray-600 dark:text-gray-100 dark:hover:bg-gray-500"
-                    >
-                        <i className="fas fa-times mr-2"></i> Clear
-                    </button>
-                </div>
-
-                {/* Output Section */}
-                <div className="mt-6">
-                    <label htmlFor="diff-output" className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">Differences</label>
-                    <textarea
-                        id="diff-output"
-                        className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 h-64 resize-y font-mono text-sm"
-                        value={diffOutput}
-                        readOnly
-                        placeholder="Differences will appear here. Lines starting with '-' are removed, '+' are added, '  ' are unchanged."
-                    ></textarea>
-                    {message && <p className="text-green-500 text-sm mt-2">{message}</p>}
-                </div>
-            </div>
-        </main>
     );
 }
 
