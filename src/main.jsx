@@ -16,12 +16,15 @@ if (gaMeasurementId && !document.getElementById(gtagScriptId)) {
   gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`;
   document.head.appendChild(gtagScript);
 
+  // Ensure dataLayer and gtag are defined on the window object
   window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
+  window.gtag = function() { // Explicitly assign the shim to window.gtag
+    window.dataLayer.push(arguments);
+  };
   
   // Initialize gtag and set default consent
-  gtag('js', new Date());
-  gtag('consent', 'default', {
+  window.gtag('js', new Date());
+  window.gtag('consent', 'default', {
     ad_storage: 'denied',
     analytics_storage: 'denied',
     wait_for_update: 500 // Milliseconds to wait for consent update before sending hits
@@ -30,11 +33,15 @@ if (gaMeasurementId && !document.getElementById(gtagScriptId)) {
   // Check for existing consent from localStorage (likely set by CookieBanner)
   const savedConsent = localStorage.getItem('cookieConsent');
   if (savedConsent) {
-    const { ad_storage, analytics_storage } = JSON.parse(savedConsent); // Ensure keys match what CookieBanner saves
-    gtag('consent', 'update', { ad_storage, analytics_storage });
+    // Ensure keys match what CookieBanner saves, e.g., ad_storage or adStorage
+    const consentState = JSON.parse(savedConsent); 
+    window.gtag('consent', 'update', { 
+      ad_storage: consentState.ad_storage || consentState.adStorage, 
+      analytics_storage: consentState.analytics_storage || consentState.analyticsStorage 
+    });
   }
 
-  gtag('config', gaMeasurementId);
+  window.gtag('config', gaMeasurementId);
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
