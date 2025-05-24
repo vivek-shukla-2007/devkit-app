@@ -17,6 +17,8 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
 import DisclaimerPage from './pages/DisclaimerPage';
 
+import CookieBanner from './components/CookieBanner';
+
 const pageMetadata = {
   home: {
     title: 'DevKit - Your Essential Online Dev Tools | DevGearHub',
@@ -193,6 +195,7 @@ function App() {
     // State to manage the current page/tool displayed
     const [currentPage, setCurrentPage] = useState('home');
     const [searchTerm, setSearchTerm] = useState(''); // State for the search term
+    const [showCookieBanner, setShowCookieBanner] = useState(false);
       // State to manage the theme (light/dark)
     const [theme, setTheme] = useState(() => {
         // Initialize theme from localStorage or system preference
@@ -201,6 +204,13 @@ function App() {
         }
         return 'light';
     });
+
+    useEffect(() => {
+        // Check if cookies have already been accepted
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setShowCookieBanner(true);
+        }
+    }, []);
 
     // Effect to apply theme class to documentElement
     useEffect(() => {
@@ -240,6 +250,11 @@ function App() {
     const navigateToTool = (toolId) => {
         setCurrentPage(toolId);
         setSearchTerm(''); // Clear search when navigating to a tool
+    };
+
+    const handleAcceptCookies = () => {
+        localStorage.setItem('cookiesAccepted', 'true');
+        setShowCookieBanner(false);
      };
 
     // Render content based on currentPage state
@@ -328,6 +343,11 @@ function App() {
                     </div>
                 </div>
             </footer>
+            {showCookieBanner && (
+                <CookieBanner
+                    onAccept={handleAcceptCookies}
+                />
+            )}
         </div>
     );
 }
