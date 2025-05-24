@@ -56,14 +56,119 @@ const pageMetadata = {
   'markdown-previewer': {
     title: 'Markdown Previewer - Real-time HTML Output | DevKit | DevGearHub',
     description: 'Write Markdown and see the live HTML preview instantly. Our Markdown editor supports standard syntax for easy document creation on DevGearHub.',
-  }
+  } // Removed comma and extra closing brace
+  // Add other tools as they are refactored
+};
+
+const toolData = [
+  { id: 'json-formatter', title: 'JSON Formatter', description: 'Beautify and validate JSON documents quickly and easily.', icon: 'fas fa-code', color: 'text-purple-500' },
+  { id: 'date-calculator', title: 'Date Calculator', description: 'Calculate date differences, add/subtract days, and more.', icon: 'fas fa-calendar-alt', color: 'text-blue-500' },
+  { id: 'cron-generator', title: 'Cron Generator', description: 'Visually build complex cron expressions for scheduling.', icon: 'fas fa-clock', color: 'text-green-500' },
+  { id: 'regex-tester', title: 'RegEx Tester', description: 'Test and debug regular expressions with real-time results.', icon: 'fas fa-terminal', color: 'text-red-500' },
+  { id: 'text-diff', title: 'Text Diff', description: 'Compare two text snippets to find differences easily.', icon: 'fas fa-exchange-alt', color: 'text-yellow-500' },
+  { id: 'csv-to-json', title: 'CSV to JSON', description: 'Convert CSV data into a valid JSON format.', icon: 'fas fa-file-csv', color: 'text-teal-500' },
+  { id: 'json-to-csv', title: 'JSON to CSV', description: 'Transform JSON data back into a CSV format.', icon: 'fas fa-file-code', color: 'text-indigo-500' },
+  { id: 'url-encoder-decoder', title: 'URL Encoder/Decoder', description: 'Encode or decode URL components for web safety.', icon: 'fas fa-link', color: 'text-orange-500' },
+  { id: 'base64-encoder-decoder', title: 'Base64 Encoder/Decoder', description: 'Encode or decode strings to/from Base64 format.', icon: 'fas fa-lock', color: 'text-pink-500' },
+  { id: 'markdown-previewer', title: 'Markdown Previewer', description: 'Write Markdown and see the HTML output in real-time.', icon: 'fab fa-markdown', color: 'text-gray-500' },
+  // Add TimestampConverter once its page is created
+  // { id: 'timestamp-converter', title: 'Timestamp Converter', description: 'Convert Unix timestamps to human-readable dates and vice-versa.', icon: 'fas fa-history', color: 'text-cyan-500' },
+];
+
+function ToolCard({ tool, onNavigate }) {
+  return (
+    <a
+      href="#"
+      onClick={(e) => {
+        e.preventDefault();
+        onNavigate(tool.id);
+      }}
+      className="tool-card bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 flex flex-col items-center text-center border border-gray-200 dark:border-gray-700"
+    >
+      <i className={`${tool.icon} ${tool.color} text-4xl mb-4`}></i>
+      <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">{tool.title}</h3>
+      <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">{tool.description}</p>
+    </a>
+  );
+}
+
+function HomePage({ onNavigate, searchTerm, onSearchChange }) {
+  const filteredTools = toolData.filter(tool =>
+    tool.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    tool.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <>
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-purple-500 to-indigo-600 dark:from-purple-700 dark:to-indigo-800 text-white py-16 px-4 sm:px-6 lg:px-8 text-center rounded-lg my-8 mx-4 md:mx-auto max-w-6xl shadow-xl">
+        <h2 className="text-4xl sm:text-5xl font-extrabold mb-4 leading-tight">
+          Your Essential Online Dev Tools
+        </h2>
+        <p className="text-lg sm:text-xl mb-8 opacity-90">
+          Fast, Free, and Reliable Utilities for Everyday Coding Tasks.
+        </p>
+        <div className="max-w-xl mx-auto">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search for a tool (e.g., JSON, Date, Regex)..."
+              className="w-full p-3 pl-10 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-300 shadow-lg"
+              value={searchTerm}
+              onChange={onSearchChange}
+            />
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <i className="fas fa-search text-gray-400"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tools Grid */}
+      <main className="flex-grow container mx-auto px-4 py-8">
+        <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-10">Explore Our Tools</h2>
+        {filteredTools.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredTools.map(tool => (
+              <ToolCard key={tool.id} tool={tool} onNavigate={onNavigate} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-gray-600 dark:text-gray-400 text-xl">No tools found matching your search.</p>
+        )}
+      </main>
+
+      {/* Why Choose DevKit Section */}
+      <section className="bg-gray-100 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8 text-center mt-12 rounded-lg mx-4 md:mx-auto max-w-6xl shadow-inner">
+        <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Why Choose DevKit?</h3>
+        <div className="flex flex-col md:flex-row justify-center items-start md:space-x-8 space-y-6 md:space-y-0">
+          <div className="flex flex-col items-center">
+            <i className="fas fa-bolt text-purple-500 text-3xl mb-3"></i>
+            <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">Blazing Fast</p>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">Instant results with client-side processing.</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <i className="fas fa-shield-alt text-green-500 text-3xl mb-3"></i>
+            <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">Privacy-Focused</p>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">Your data stays in your browser. No server uploads.</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <i className="fas fa-infinity text-blue-500 text-3xl mb-3"></i>
+            <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">Always Free</p>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">Access all tools without any cost or subscriptions.</p>
+          </div>
+        </div>
+      </section>
+    </>
+  );
 };
 
 // Main App component
 function App() {
     // State to manage the current page/tool displayed
     const [currentPage, setCurrentPage] = useState('home');
-    // State to manage the theme (light/dark)
+    const [searchTerm, setSearchTerm] = useState(''); // State for the search term
+      // State to manage the theme (light/dark)
     const [theme, setTheme] = useState(() => {
         // Initialize theme from localStorage or system preference
         if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -102,135 +207,21 @@ function App() {
         setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
     };
 
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
     // Function to navigate to a specific tool page
     const navigateToTool = (toolId) => {
         setCurrentPage(toolId);
-    };
+        setSearchTerm(''); // Clear search when navigating to a tool
+     };
 
     // Render content based on currentPage state
     const renderContent = () => {
         switch (currentPage) {
             case 'home':
-                return (
-                    <>
-                        {/* Hero Section */}
-                        <section className="bg-gradient-to-r from-purple-500 to-indigo-600 dark:from-purple-700 dark:to-indigo-800 text-white py-16 px-4 sm:px-6 lg:px-8 text-center rounded-lg my-8 mx-4 md:mx-auto max-w-6xl shadow-xl">
-                            <h2 className="text-4xl sm:text-5xl font-extrabold mb-4 leading-tight">
-                                Your Essential Online Dev Tools
-                            </h2>
-                            <p className="text-lg sm:text-xl mb-8 opacity-90">
-                                Fast, Free, and Reliable Utilities for Everyday Coding Tasks.
-                            </p>
-                            <div className="max-w-xl mx-auto">
-                                <div className="relative">
-                                    <input type="text" placeholder="Search for a tool (e.g., JSON, Date, Regex)..." className="w-full p-3 pl-10 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-300 shadow-lg" />
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <i className="fas fa-search text-gray-400"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        {/* Tools Grid */}
-                        <main className="flex-grow container mx-auto px-4 py-8">
-                            <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-10">Explore Our Tools</h2>
-
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                                {/* JSON Formatter Tool Card */}
-                                <a href="#" onClick={() => navigateToTool('json-formatter')} className="tool-card bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 flex flex-col items-center text-center border border-gray-200 dark:border-gray-700">
-                                    <i className="fas fa-code text-purple-500 text-4xl mb-4"></i>
-                                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">JSON Formatter</h3>
-                                    <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">Beautify and validate JSON documents quickly and easily.</p>
-                                </a>
-
-                                {/* Date Calculator Tool Card */}
-                                <a href="#" onClick={() => navigateToTool('date-calculator')} className="tool-card bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 flex flex-col items-center text-center border border-gray-200 dark:border-gray-700">
-                                    <i className="fas fa-calendar-alt text-blue-500 text-4xl mb-4"></i>
-                                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Date Calculator</h3>
-                                    <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">Calculate date differences, add/subtract days, and more.</p>
-                                </a>
-
-                                {/* Cron Generator Tool Card */}
-                                <a href="#" onClick={() => navigateToTool('cron-generator')} className="tool-card bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 flex flex-col items-center text-center border border-gray-200 dark:border-gray-700">
-                                    <i className="fas fa-clock text-green-500 text-4xl mb-4"></i>
-                                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Cron Generator</h3>
-                                    <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">Visually build complex cron expressions for scheduling.</p>
-                                </a>
-
-                                {/* RegEx Tester Tool Card */}
-                                <a href="#" onClick={() => navigateToTool('regex-tester')} className="tool-card bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 flex flex-col items-center text-center border border-gray-200 dark:border-gray-700">
-                                    <i className="fas fa-terminal text-red-500 text-4xl mb-4"></i>
-                                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">RegEx Tester</h3>
-                                    <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">Test and debug regular expressions with real-time results.</p>
-                                </a>
-
-                                {/* Text Diff Tool Card */}
-                                <a href="#" onClick={() => navigateToTool('text-diff')} className="tool-card bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 flex flex-col items-center text-center border border-gray-200 dark:border-gray-700">
-                                    <i className="fas fa-exchange-alt text-yellow-500 text-4xl mb-4"></i>
-                                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Text Diff</h3>
-                                    <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">Compare two text snippets to find differences easily.</p>
-                                </a>
-
-                                {/* CSV to JSON Tool Card */}
-                                <a href="#" onClick={() => navigateToTool('csv-to-json')} className="tool-card bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 flex flex-col items-center text-center border border-gray-200 dark:border-gray-700">
-                                    <i className="fas fa-file-csv text-teal-500 text-4xl mb-4"></i>
-                                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">CSV to JSON</h3>
-                                    <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">Convert CSV data into a valid JSON format.</p>
-                                </a>
-
-                                {/* JSON to CSV Tool Card */}
-                                <a href="#" onClick={() => navigateToTool('json-to-csv')} className="tool-card bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 flex flex-col items-center text-center border border-gray-200 dark:border-gray-700">
-                                    <i className="fas fa-file-code text-indigo-500 text-4xl mb-4"></i>
-                                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">JSON to CSV</h3>
-                                    <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">Transform JSON data back into a CSV format.</p>
-                                </a>
-
-                                {/* URL Encoder/Decoder Tool Card */}
-                                <a href="#" onClick={() => navigateToTool('url-encoder-decoder')} className="tool-card bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 flex flex-col items-center text-center border border-gray-200 dark:border-gray-700">
-                                    <i className="fas fa-link text-orange-500 text-4xl mb-4"></i>
-                                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">URL Encoder/Decoder</h3>
-                                    <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">Encode or decode URL components for web safety.</p>
-                                </a>
-
-                                {/* Base64 Encoder/Decoder Tool Card */}
-                                <a href="#" onClick={() => navigateToTool('base64-encoder-decoder')} className="tool-card bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 flex flex-col items-center text-center border border-gray-200 dark:border-gray-700">
-                                    <i className="fas fa-lock text-pink-500 text-4xl mb-4"></i>
-                                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Base64 Encoder/Decoder</h3>
-                                    <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">Encode or decode strings to/from Base64 format.</p>
-                                </a>
-
-                                {/* Markdown Previewer Tool Card */}
-                                <a href="#" onClick={() => navigateToTool('markdown-previewer')} className="tool-card bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 flex flex-col items-center text-center border border-gray-200 dark:border-gray-700">
-                                    <i className="fab fa-markdown text-gray-500 text-4xl mb-4"></i>
-                                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Markdown Previewer</h3>
-                                    <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">Write Markdown and see the HTML output in real-time.</p>
-                                </a>
-                            </div>
-                        </main>
-
-                        {/* Why Choose DevKit Section */}
-                        <section className="bg-gray-100 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8 text-center mt-12 rounded-lg mx-4 md:mx-auto max-w-6xl shadow-inner">
-                            <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Why Choose DevKit?</h3>
-                            <div className="flex flex-col md:flex-row justify-center items-start md:space-x-8 space-y-6 md:space-y-0">
-                                <div className="flex flex-col items-center">
-                                    <i className="fas fa-bolt text-purple-500 text-3xl mb-3"></i>
-                                    <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">Blazing Fast</p>
-                                    <p className="text-gray-600 dark:text-gray-400 text-sm">Instant results with client-side processing.</p>
-                                </div>
-                                <div className="flex flex-col items-center">
-                                    <i className="fas fa-shield-alt text-green-500 text-3xl mb-3"></i>
-                                    <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">Privacy-Focused</p>
-                                    <p className="text-gray-600 dark:text-gray-400 text-sm">Your data stays in your browser. No server uploads.</p>
-                                </div>
-                                <div className="flex flex-col items-center">
-                                    <i className="fas fa-infinity text-blue-500 text-3xl mb-3"></i>
-                                    <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">Always Free</p>
-                                    <p className="text-gray-600 dark:text-gray-400 text-sm">Access all tools without any cost or subscriptions.</p>
-                                </div>
-                            </div>
-                        </section>
-                    </>
-                );
+                return <HomePage onNavigate={navigateToTool} searchTerm={searchTerm} onSearchChange={handleSearchChange} />;
             case 'json-formatter':
                 return <JsonFormatterPage />;
             case 'date-calculator':
