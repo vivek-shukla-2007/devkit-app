@@ -11,6 +11,11 @@ import JsonToCsvPage from './features/jsonToCsv/JsonToCsvPage';
 import UrlEncoderDecoderPage from './features/urlEncoderDecoder/UrlEncoderDecoderPage';
 import Base64EncoderDecoderPage from './features/base64EncoderDecoder/Base64EncoderDecoderPage';
 import MarkdownPreviewerPage from './features/markdownPreviewer/MarkdownPreviewerPage';
+import ContactPage from './pages/ContactPage'; // Assuming ContactPage.jsx is in src/pages/
+import AboutPage from './pages/AboutPage'; // Corrected import path
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsOfServicePage from './pages/TermsOfServicePage';
+import DisclaimerPage from './pages/DisclaimerPage';
 
 const pageMetadata = {
   home: {
@@ -56,8 +61,28 @@ const pageMetadata = {
   'markdown-previewer': {
     title: 'Markdown Previewer - Real-time HTML Output | DevKit | DevGearHub',
     description: 'Write Markdown and see the live HTML preview instantly. Our Markdown editor supports standard syntax for easy document creation on DevGearHub.',
-  } // Removed comma and extra closing brace
-  // Add other tools as they are refactored
+  } ,
+  'contact': {
+    title: 'Contact Us - DevKit | DevGearHub',
+    description: 'Get in touch with the DevKit team. Share your feedback, suggestions, or report issues to help us improve our free online developer tools on DevGearHub.',
+  },
+  'about': {
+    title: 'About DevKit - Our Mission & Values | DevGearHub',
+    description: 'Learn more about DevKit, our mission to provide free developer tools, our core values like privacy and speed, and the technology behind DevGearHub.',
+  },
+  'privacy-policy': {
+    title: 'Privacy Policy - DevKit | DevGearHub',
+    description: 'Read the Privacy Policy for DevGearHub to understand how we handle your information when you use our online developer tools.',
+  },
+  'terms-of-service': {
+    title: 'Terms of Service - DevKit | DevGearHub',
+    description: 'Review the Terms of Service for using DevGearHub. Your access and use of our services are conditioned upon your acceptance of these terms.',
+  },
+  'disclaimer': {
+    title: 'Disclaimer - DevKit | DevGearHub',
+    description: 'Disclaimer for DevGearHub. Information provided on this site is for general purposes only. Use our tools at your own risk.',
+  },
+
 };
 
 const toolData = [
@@ -242,6 +267,16 @@ function App() {
                 return <Base64EncoderDecoderPage />;
             case 'markdown-previewer':
                 return <MarkdownPreviewerPage />;
+            case 'contact':
+                return <ContactPage />;
+            case 'about':
+                return <AboutPage />;    
+            case 'privacy-policy':
+                return <PrivacyPolicyPage />;
+            case 'terms-of-service':
+                return <TermsOfServicePage />;
+            case 'disclaimer':
+                return <DisclaimerPage />;
             default:
                 return null;
         }
@@ -259,8 +294,8 @@ function App() {
                 <nav className="flex items-center space-x-4">
                     <a href="#" onClick={() => navigateToTool('home')} className="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 font-medium hidden md:block">Home</a>
                     {/* Placeholder for About and Contact - can be simple modals or separate sections */}
-                    <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 font-medium hidden md:block">About</a>
-                    <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 font-medium hidden md:block">Contact</a>
+                   <a href="#" onClick={(e) => { e.preventDefault(); navigateToTool('about'); }} className="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 font-medium hidden md:block">About</a>
+                    <a href="#" onClick={() => navigateToTool('contact')} className="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 font-medium hidden md:block">Contact</a>
 
                     <button
                         id="theme-toggle"
@@ -284,8 +319,8 @@ function App() {
                 <div className="container mx-auto flex flex-col md:flex-row justify-between items-center text-sm">
                     <p>&copy; 2025 DevKit. All rights reserved.</p>
                     <div className="flex space-x-4 mt-4 md:mt-0">
-                        <a href="#" className="hover:text-white transition-colors duration-200">Privacy Policy</a>
-                        <a href="#" className="hover:text-white transition-colors duration-200">Terms of Service</a>
+                        <a href="#" onClick={() => navigateToTool('privacy-policy')} className="hover:text-white transition-colors duration-200">Privacy Policy</a>
+                        <a href="#" onClick={() => navigateToTool('terms-of-service')} className="hover:text-white transition-colors duration-200">Terms of Service</a>
                         <a href="#" className="hover:text-white transition-colors duration-200">Suggest a Tool</a>
                         <a href="https://github.com/yourusername/your-repo" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200">
                             <i className="fab fa-github text-lg"></i>

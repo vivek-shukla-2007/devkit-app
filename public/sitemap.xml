@@ -66,13 +66,40 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Add an entry for TimestampConverter once its page is created and you have a navigation ID for it -->
-  <!--
   <url>
     <loc>https://devgearhub.com/#timestamp-converter</loc>
     <lastmod>2023-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  -->
+  <url>
+    <loc>https://devgearhub.com/#contact</loc>
+    <lastmod>2023-11-16</lastmod> <!-- Or actual current date -->
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://devgearhub.com/#about</loc>
+    <lastmod>2023-11-16</lastmod> <!-- Or actual current date -->
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority> <!-- Slightly higher than contact, as it describes the site -->
+  </url>
+  <url>
+    <loc>https://devgearhub.com/#privacy-policy</loc>
+    <lastmod>2023-11-16</lastmod> <!-- Or actual current date -->
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://devgearhub.com/#terms-of-service</loc>
+    <lastmod>2023-11-16</lastmod> <!-- Or actual current date -->
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://devgearhub.com/#disclaimer</loc>
+    <lastmod>2023-11-16</lastmod> <!-- Or actual current date -->
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>
