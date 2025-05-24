@@ -102,10 +102,6 @@ const pageMetadata = {
     title: 'Unix Timestamp Converter - Online Tool | DevKit | DevGearHub',
     description: 'Convert Unix timestamps (seconds or milliseconds) to human-readable dates and vice-versa. Includes current timestamp generation on DevGearHub.',
   },
-  'json-formatter': { // Assuming this was missed in the previous context, adding it back if needed.
-    title: 'JSON Formatter & Validator - Online Tool | DevKit | DevGearHub',
-    description: 'Easily format, pretty-print, and validate your JSON data online. Our tool helps ensure your JSON is well-formed and readable on DevGearHub.',
-  }
 
 };
 
