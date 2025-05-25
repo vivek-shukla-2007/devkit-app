@@ -7,97 +7,97 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://devgearhub.com/#json-formatter</loc>
+    <loc>https://devgearhub.com/json-formatter</loc>
     <lastmod>2023-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devgearhub.com/#date-calculator</loc>
+    <loc>https://devgearhub.com/date-calculator</loc>
     <lastmod>2023-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devgearhub.com/#cron-generator</loc>
+    <loc>https://devgearhub.com/cron-generator</loc>
     <lastmod>2023-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devgearhub.com/#regex-tester</loc>
+    <loc>https://devgearhub.com/regex-tester</loc>
     <lastmod>2023-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devgearhub.com/#text-diff</loc>
+    <loc>https://devgearhub.com/text-diff</loc>
     <lastmod>2023-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devgearhub.com/#csv-to-json</loc>
+    <loc>https://devgearhub.com/csv-to-json</loc>
     <lastmod>2023-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devgearhub.com/#json-to-csv</loc>
+    <loc>https://devgearhub.com/json-to-csv</loc>
     <lastmod>2023-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devgearhub.com/#url-encoder-decoder</loc>
+    <loc>https://devgearhub.com/url-encoder-decoder</loc>
     <lastmod>2023-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devgearhub.com/#base64-encoder-decoder</loc>
+    <loc>https://devgearhub.com/base64-encoder-decoder</loc>
     <lastmod>2023-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devgearhub.com/#markdown-previewer</loc>
+    <loc>https://devgearhub.com/markdown-previewer</loc>
     <lastmod>2023-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devgearhub.com/#timestamp-converter</loc>
+    <loc>https://devgearhub.com/unix-timestamp-converter</loc>
     <lastmod>2023-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devgearhub.com/#contact</loc>
+    <loc>https://devgearhub.com/contact</loc>
     <lastmod>2023-11-16</lastmod> <!-- Or actual current date -->
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://devgearhub.com/#about</loc>
+    <loc>https://devgearhub.com/about</loc>
     <lastmod>2023-11-16</lastmod> <!-- Or actual current date -->
     <changefreq>yearly</changefreq>
     <priority>0.7</priority> <!-- Slightly higher than contact, as it describes the site -->
   </url>
   <url>
-    <loc>https://devgearhub.com/#privacy-policy</loc>
+    <loc>https://devgearhub.com/privacy-policy</loc>
     <lastmod>2023-11-16</lastmod> <!-- Or actual current date -->
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://devgearhub.com/#terms-of-service</loc>
+    <loc>https://devgearhub.com/terms-of-service</loc>
     <lastmod>2023-11-16</lastmod> <!-- Or actual current date -->
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://devgearhub.com/#disclaimer</loc>
+    <loc>https://devgearhub.com/disclaimer</loc>
     <lastmod>2023-11-16</lastmod> <!-- Or actual current date -->
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

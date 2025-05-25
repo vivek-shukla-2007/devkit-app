@@ -202,10 +202,14 @@ const toolData = [
 // Main App component
 function App() {
     // State to manage the current page/tool displayed
-    const [currentPage, setCurrentPage] = useState('home');
+    // Initialize currentPage from the browser's URL path
+    const [currentPage, setCurrentPage] = useState(() => {
+        const path = window.location.pathname.replace(/^\//, ''); // Remove leading '/'
+        return path || 'home'; // Default to 'home' if path is empty or just '/'
+    });
     const [searchTerm, setSearchTerm] = useState(''); // State for the search term
     const [showCookieBanner, setShowCookieBanner] = useState(false);
-      // State to manage the theme (light/dark)
+    // State to manage the theme (light/dark)
     const [theme, setTheme] = useState(() => {
         // Initialize theme from localStorage or system preference
         if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -232,7 +236,18 @@ function App() {
     }, [theme]);
 
     // Effect to update page title and meta description
+    // This effect also handles initial URL setting on page load if currentPage was derived from path
     useEffect(() => {
+        // Update browser URL if it doesn't match currentPage
+        // This ensures direct navigation or refresh loads the correct view and URL
+        const currentPathInBrowser = window.location.pathname.replace(/^\//, '') || 'home';
+        const targetPathForState = currentPage === 'home' ? '' : currentPage;
+
+        if (currentPathInBrowser !== targetPathForState) {
+            const newUrl = currentPage === 'home' ? '/' : `/${currentPage}`;
+            window.history.pushState({ page: currentPage }, '', newUrl);
+        }
+
         const metadata = pageMetadata[currentPage] || pageMetadata.home; // Fallback to home metadata
         document.title = metadata.title;
 
@@ -246,6 +261,20 @@ function App() {
         metaDescriptionTag.setAttribute('content', metadata.description);
     }, [currentPage]);
 
+    // Effect to handle browser back/forward navigation
+    useEffect(() => {
+        const handlePopState = (event) => {
+            // When browser back/forward is used, event.state might be null or contain our state
+            const path = window.location.pathname.replace(/^\//, '') || 'home';
+            setCurrentPage(path);
+        };
+
+        window.addEventListener('popstate', handlePopState);
+        return () => {
+            window.removeEventListener('popstate', handlePopState);
+        };
+    }, []); // Empty dependency array ensures this runs only once on mount and unmount
+
     // Function to toggle theme
     const toggleTheme = () => {
         setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
@@ -257,7 +286,13 @@ function App() {
 
     // Function to navigate to a specific tool page
     const navigateToTool = (toolId) => {
-        setCurrentPage(toolId);
+        const newUrl = toolId === 'home' ? '/' : `/${toolId}`;
+        // Only push state if the URL is actually changing
+        if (window.location.pathname !== newUrl) {
+            window.history.pushState({ page: toolId }, '', newUrl);
+        }
+        // Setting currentPage will trigger the other useEffect to update metadata
+        setCurrentPage(toolId); 
         setSearchTerm(''); // Clear search when navigating to a tool
     };
 
