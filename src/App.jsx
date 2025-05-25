@@ -20,6 +20,13 @@ import DisclaimerPage from './pages/DisclaimerPage';
 import CaseConverterPage from './features/caseConverter/CaseConverterPage';
 import CharWordCounterPage from './features/charWordCounter/CharWordCounterPage';
 import UnixTimestampConverterPage from './features/unixTimestampConverter/UnixTimestampConverterPage';
+import HtmlEntityEncoderDecoderPage from './features/htmlEntityEncoderDecoder/HtmlEntityEncoderDecoderPage';
+import XmlFormatterPage from './features/xmlFormatter/XmlFormatterPage'; // Added import
+import YamlValidatorPage from './features/yamlValidator/YamlValidatorPage'; // Added import
+import JwtDecoderPage from './features/jwtDecoder/JwtDecoderPage';
+import HashGeneratorPage from './features/hashGenerator/HashGeneratorPage';
+import UuidGeneratorPage from './features/uuidGenerator/UuidGeneratorPage';
+import NumberBaseConverterPage from './features/numberBaseConverter/NumberBaseConverterPage';
 
 import CookieBanner from './components/CookieBanner';
 import HomePage from './components/home/HomePage'; // Moved HomePage
@@ -102,6 +109,34 @@ const pageMetadata = {
     title: 'Unix Timestamp Converter - Online Tool | DevKit | DevGearHub',
     description: 'Convert Unix timestamps (seconds or milliseconds) to human-readable dates and vice-versa. Includes current timestamp generation on DevGearHub.',
   },
+  'html-entity-encoder-decoder': {
+    title: 'HTML Entity Encoder & Decoder - Online Tool | DevKit | DevGearHub',
+    description: 'Easily encode text to HTML entities or decode HTML entities back to text. Essential for web development and data sanitization on DevGearHub.',
+  },
+  'xml-formatter': {
+    title: 'XML Formatter - Online Tool | DevKit | DevGearHub',
+    description: 'Format and beautify your XML data online. Makes XML readable and helps in debugging structures on DevGearHub.',
+  },
+  'yaml-validator': {
+    title: 'YAML Validator - Online Lint Tool | DevKit | DevGearHub',
+    description: 'Validate your YAML syntax online. Quickly check for errors and ensure your YAML files are well-formed on DevGearHub.',
+  },
+  'jwt-decoder': {
+    title: 'JWT Decoder - Online Tool | DevKit | DevGearHub',
+    description: 'Decode JSON Web Tokens (JWTs) online. View the header and payload of your JWTs for debugging and verification on DevGearHub.',
+  },
+  'hash-generator': {
+    title: 'Hash Generator (MD5, SHA1, SHA256, SHA512) | DevKit | DevGearHub',
+    description: 'Generate MD5, SHA-1, SHA-256, and SHA-512 hashes from your text input online. Useful for data integrity checks on DevGearHub.',
+  },
+  'uuid-generator': {
+    title: 'UUID/GUID Generator - Online Tool | DevKit | DevGearHub',
+    description: 'Generate universally unique identifiers (UUIDs/GUIDs) version 4 online with a single click on DevGearHub.',
+  },
+  'number-base-converter': {
+    title: 'Number Base Converter (Bin, Oct, Dec, Hex) | DevKit | DevGearHub',
+    description: 'Convert numbers between binary, octal, decimal, and hexadecimal bases with our easy-to-use online converter on DevGearHub.',
+  }
 
 };
 
@@ -196,6 +231,55 @@ const toolData = [
     description: "Convert Unix timestamps to human-readable dates and vice-versa.",
     icon: <i className="fas fa-history text-3xl text-cyan-500"></i>, // Changed icon for variety
     category: "Date & Time"
+  },
+  {
+    id: 'html-entity-encoder-decoder',
+    name: 'HTML Entity Encoder/Decoder',
+    description: "Encode or decode text for HTML, preventing XSS and rendering issues.",
+    icon: <i className="fas fa-code-branch text-3xl text-red-400"></i>, // Example icon
+    category: "Web Utilities" // Corrected category
+  },
+  {
+    id: 'xml-formatter',
+    name: 'XML Formatter',
+    description: "Format and beautify XML data to make it readable.",
+    icon: <i className="fas fa-file-code text-3xl text-orange-400"></i>, 
+    category: "Data Converters"
+  },
+  {
+    id: 'yaml-validator',
+    name: 'YAML Validator',
+    description: "Validate YAML syntax to ensure it's well-formed.",
+    icon: <i className="fas fa-check-double text-3xl text-sky-500"></i>, 
+    category: "Utilities"
+  },
+  {
+    id: 'jwt-decoder',
+    name: 'JWT Decoder',
+    description: "Decode and inspect JSON Web Tokens (header and payload).",
+    icon: <i className="fas fa-key text-3xl text-yellow-600"></i>,
+    category: "Web Utilities"
+  },
+  {
+    id: 'hash-generator',
+    name: 'Hash Generator',
+    description: "Generate MD5, SHA1, SHA256, SHA512 hashes from text.",
+    icon: <i className="fas fa-fingerprint text-3xl text-gray-500"></i>,
+    category: "Encoders & Decoders"
+  },
+  {
+    id: 'uuid-generator',
+    name: 'UUID/GUID Generator',
+    description: "Generate universally unique identifiers (UUID v4).",
+    icon: <i className="fas fa-dice-d6 text-3xl text-green-600"></i>,
+    category: "Utilities"
+  },
+  {
+    id: 'number-base-converter',
+    name: 'Number Base Converter',
+    description: "Convert numbers between binary, octal, decimal, and hex.",
+    icon: <i className="fas fa-exchange-alt text-3xl text-purple-400 transform rotate-90"></i>,
+    category: "Utilities"
   }
 ];
 
@@ -342,6 +426,20 @@ function App() {
                 return <CharWordCounterPage />;
             case 'unix-timestamp-converter':
                 return <UnixTimestampConverterPage />;
+            case 'html-entity-encoder-decoder':
+                return <HtmlEntityEncoderDecoderPage />;
+            case 'xml-formatter':
+                return <XmlFormatterPage />;
+            case 'yaml-validator':
+                return <YamlValidatorPage />;
+            case 'jwt-decoder':
+                return <JwtDecoderPage />;
+            case 'hash-generator':
+                return <HashGeneratorPage />;
+            case 'uuid-generator':
+                return <UuidGeneratorPage />;
+            case 'number-base-converter':
+                return <NumberBaseConverterPage />;
             default:
                 return null;
         }

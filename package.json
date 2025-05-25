@@ -16,9 +16,11 @@
     "dompurify": "^3.2.6",
     "json-2-csv": "^5.5.9",
     "markdown-it": "^14.1.0",
+    "md5": "^2.3.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-json-view": "^1.21.3",
     "react-router-dom": "^7.6.0"
   },
   "devDependencies": {
