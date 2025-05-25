@@ -102,4 +102,22 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+   <url>
+    <loc>https://devgearhub.com/color-converter</loc>
+    <lastmod>2023-11-17</lastmod> <!-- Update with current date -->
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://devgearhub.com/sql-formatter</loc>
+    <lastmod>2023-11-17</lastmod> <!-- Update with current date -->
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://devgearhub.com/lorem-ipsum-generator</loc>
+    <lastmod>2023-11-17</lastmod> <!-- Update with current date -->
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority> <!-- Slightly lower as it's more of a utility -->
+  </url>
 </urlset>

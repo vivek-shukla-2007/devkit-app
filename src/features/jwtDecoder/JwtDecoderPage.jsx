@@ -73,35 +73,32 @@ export default function JwtDecoderPage() {
         if (!data) return null;
         return (
             <div className="mb-6">
-                <div className="flex justify-between items-center mb-2">
-                    <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">{title}</h3>
+                <div className="flex justify-between items-center mb-1">
+                    <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">{title}</h3>
                     <button onClick={() => handleCopyToClipboard(data, sectionKey)} title={`Copy ${title}`} className="p-1.5 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded text-gray-700 dark:text-gray-300">
                         {copiedSection === sectionKey ? <CheckCircleIcon className="h-5 w-5 text-green-500" /> : <ClipboardDocumentIcon className="h-5 w-5" />}
                     </button>
                 </div>
-                <pre className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 overflow-auto font-mono text-sm">
+                <pre className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 overflow-auto font-mono text-sm">
                     {JSON.stringify(data, null, 2)}
                 </pre>
             </div>
         );
     };
-
     return (
         <main className="flex-grow container mx-auto px-4 py-8">
-            <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">JWT Decoder</h2>
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8 border border-gray-200 dark:border-gray-700">
-                <label htmlFor="jwt-input" className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">Encoded JWT</label>
-                <textarea id="jwt-input" rows="6" value={jwtInput} onChange={(e) => setJwtInput(e.target.value)} placeholder="Paste your JWT here..." className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-blue-500 focus:border-blue-500 resize-y font-mono text-sm" />
-                <div className="mt-6 flex flex-wrap justify-center gap-4">
-                    <button onClick={handleDecode} className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700">Decode JWT</button>
-                    <button onClick={handleClear} className="px-6 py-3 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 dark:bg-gray-600 dark:text-gray-100 dark:hover:bg-gray-500 flex items-center"><TrashIcon className="h-5 w-5 mr-2" /> Clear</button>
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">JWT Decoder</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 mb-6 border border-gray-200 dark:border-gray-700">
+                <label htmlFor="jwt-input" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Encoded JWT</label>
+                <textarea id="jwt-input" rows="6" value={jwtInput} onChange={(e) => setJwtInput(e.target.value)} placeholder="Paste your JWT here..." className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-blue-500 focus:border-blue-500 resize-y font-mono text-sm" />
+                <div className="mt-4 flex flex-wrap justify-center gap-3">
+                    <button onClick={handleDecode} className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700">Decode JWT</button>
+                    <button onClick={handleClear} className="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 dark:bg-gray-600 dark:text-gray-100 dark:hover:bg-gray-500 flex items-center"><TrashIcon className="h-5 w-5 mr-2" /> Clear</button>
                 </div>
             </div>
-
-            {error && <p className="my-4 text-sm text-red-500 dark:text-red-400 text-center">{error}</p>}
-
+            {error && <p className="my-3 text-sm text-red-500 dark:text-red-400 text-center">{error}</p>}
             {(decodedHeader || decodedPayload) && !error && (
-                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700">
+                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 border border-gray-200 dark:border-gray-700">
                     {renderJsonOutput("Decoded Header", decodedHeader, "header")}
                     {renderJsonOutput("Decoded Payload", decodedPayload, "payload")}
                     <p className="mt-4 text-xs text-gray-500 dark:text-gray-400">Note: Signature verification is not performed by this client-side decoder.</p>

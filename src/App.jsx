@@ -27,6 +27,9 @@ import JwtDecoderPage from './features/jwtDecoder/JwtDecoderPage';
 import HashGeneratorPage from './features/hashGenerator/HashGeneratorPage';
 import UuidGeneratorPage from './features/uuidGenerator/UuidGeneratorPage';
 import NumberBaseConverterPage from './features/numberBaseConverter/NumberBaseConverterPage';
+import ColorConverterPage from './features/colorConverter/ColorConverterPage';
+import SqlFormatterPage from './features/sqlFormatter/SqlFormatterPage';
+import LoremIpsumGeneratorPage from './features/loremIpsumGenerator/LoremIpsumGeneratorPage';
 
 import CookieBanner from './components/CookieBanner';
 import HomePage from './components/home/HomePage'; // Moved HomePage
@@ -136,7 +139,20 @@ const pageMetadata = {
   'number-base-converter': {
     title: 'Number Base Converter (Bin, Oct, Dec, Hex) | DevKit | DevGearHub',
     description: 'Convert numbers between binary, octal, decimal, and hexadecimal bases with our easy-to-use online converter on DevGearHub.',
+  },
+ 'color-converter': {
+    title: 'Color Picker & Converter (HEX, RGB, HSL) | DevKit | DevGearHub',
+    description: 'Pick colors and convert between HEX, RGB, and HSL formats. An essential tool for web developers and designers on DevGearHub.',
+  },
+  'sql-formatter': {
+    title: 'SQL Formatter - Online Beautifier | DevKit | DevGearHub',
+    description: 'Format and beautify your SQL queries online for various dialects. Improve readability and maintainability of your SQL code on DevGearHub.',
+  },
+  'lorem-ipsum-generator': {
+    title: 'Lorem Ipsum Generator - Placeholder Text | DevKit | DevGearHub',
+    description: 'Generate Lorem Ipsum placeholder text for your designs and mockups. Specify the number of paragraphs needed on DevGearHub.',
   }
+  
 
 };
 
@@ -252,6 +268,27 @@ const toolData = [
     description: "Validate YAML syntax to ensure it's well-formed.",
     icon: <i className="fas fa-check-double text-3xl text-sky-500"></i>, 
     category: "Utilities"
+  },
+  {
+    id: 'color-converter',
+    name: 'Color Picker & Converter',
+    description: "Pick colors and convert between HEX, RGB, HSL.",
+    icon: <i className="fas fa-palette text-3xl text-pink-400"></i>,
+    category: "Web Utilities"
+  },
+  {
+    id: 'sql-formatter',
+    name: 'SQL Formatter',
+    description: "Format and beautify SQL queries for readability.",
+    icon: <i className="fas fa-database text-3xl text-blue-400"></i>,
+    category: "Data Converters"
+  },
+  {
+    id: 'lorem-ipsum-generator',
+    name: 'Lorem Ipsum Generator',
+    description: "Generate placeholder text for designs and mockups.",
+    icon: <i className="fas fa-paragraph text-3xl text-teal-400"></i>,
+    category: "Text Manipulation"
   },
   {
     id: 'jwt-decoder',
@@ -440,6 +477,12 @@ function App() {
                 return <UuidGeneratorPage />;
             case 'number-base-converter':
                 return <NumberBaseConverterPage />;
+            case 'color-converter':
+                return <ColorConverterPage />;
+            case 'sql-formatter':
+                return <SqlFormatterPage />;
+            case 'lorem-ipsum-generator':
+                return <LoremIpsumGeneratorPage />;          
             default:
                 return null;
         }
@@ -448,10 +491,12 @@ function App() {
     return (
         <div className="min-h-screen flex flex-col transition-colors duration-300 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
             {/* Header */}
-            <header className="bg-white dark:bg-gray-800 shadow-md p-4 flex items-center justify-between rounded-b-lg">
-                <div className="flex items-center space-x-2 cursor-pointer" onClick={() => navigateToTool('home')}>
-                    <i className="fas fa-tools text-purple-600 dark:text-purple-400 text-2xl"></i>
-                    <h1 className="text-2xl font-bold text-gray-800 dark:text-white">DevKit</h1>
+            <header className="bg-white dark:bg-gray-800 shadow-md p-4 flex items-center justify-between rounded-b-lg sticky top-0 z-50">
+                <div className="cursor-pointer text-center sm:text-left mb-2 sm:mb-0" onClick={() => navigateToTool('home')}>
+                    <div className="flex items-center justify-center sm:justify-start space-x-2">
+                        <i className="fas fa-tools text-purple-600 dark:text-purple-400 text-2xl"></i>
+                        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">DevKit</h1>
+                    </div>
                 </div>
 
                 <nav className="flex items-center space-x-4">

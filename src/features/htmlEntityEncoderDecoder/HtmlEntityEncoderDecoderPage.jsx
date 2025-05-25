@@ -86,47 +86,44 @@ export default function HtmlEntityEncoderDecoderPage() {
 
     return (
         <main className="flex-grow container mx-auto px-4 py-8">
-            <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">HTML Entity Encoder/Decoder</h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">HTML Entity Encoder/Decoder</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Input Section */}
-                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700">
-                    <label htmlFor="input-text" className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">Input Text</label>
+                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 border border-gray-200 dark:border-gray-700">
+                    <label htmlFor="input-text" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Input Text</label>
                     <textarea
                         id="input-text"
                         rows="8"
-                        className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-blue-500 focus:border-blue-500 resize-y font-mono text-sm"
+                        className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-blue-500 focus:border-blue-500 resize-y font-mono text-sm"
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}
                         placeholder="Enter text with entities or to be encoded..."
                     />
                 </div>
-
                 {/* Output Section */}
-                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700">
-                    <label htmlFor="output-text" className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 border border-gray-200 dark:border-gray-700">
+                    <label htmlFor="output-text" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                         {operation ? `${operation} Text` : 'Output Text'}
                     </label>
                     <textarea
                         id="output-text"
                         rows="8"
-                        className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-blue-500 focus:border-blue-500 resize-y font-mono text-sm"
+                        className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-blue-500 focus:border-blue-500 resize-y font-mono text-sm"
                         value={outputText}
                         readOnly
                         placeholder="Result will appear here..."
                     />
                 </div>
             </div>
-
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-                <button onClick={handleEncode} className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 flex items-center"><ArrowPathIcon className="h-5 w-5 mr-2 transform rotate-90" /> Encode Entities</button>
-                <button onClick={handleDecode} className="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 flex items-center"><ArrowPathIcon className="h-5 w-5 mr-2 transform -rotate-90" /> Decode Entities</button>
-                <button onClick={handleCopyOutput} disabled={!outputText} className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 flex items-center disabled:opacity-50 disabled:cursor-not-allowed">
+            <div className="mt-4 flex flex-wrap justify-center gap-3">
+                <button onClick={handleEncode} className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 flex items-center"><ArrowPathIcon className="h-5 w-5 mr-2 transform rotate-90" /> Encode Entities</button>
+                <button onClick={handleDecode} className="px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 flex items-center"><ArrowPathIcon className="h-5 w-5 mr-2 transform -rotate-90" /> Decode Entities</button>
+                <button onClick={handleCopyOutput} disabled={!outputText} className="px-4 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 flex items-center disabled:opacity-50 disabled:cursor-not-allowed">
                     {copied ? <CheckCircleIcon className="h-5 w-5 mr-2" /> : <ClipboardDocumentIcon className="h-5 w-5 mr-2" />} Copy Output
                 </button>
-                <button onClick={handleClear} className="px-6 py-3 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 dark:bg-gray-600 dark:text-gray-100 dark:hover:bg-gray-500 flex items-center"><TrashIcon className="h-5 w-5 mr-2" /> Clear</button>
+                <button onClick={handleClear} className="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 dark:bg-gray-600 dark:text-gray-100 dark:hover:bg-gray-500 flex items-center"><TrashIcon className="h-5 w-5 mr-2" /> Clear</button>
             </div>
-            {message && <p className={`mt-4 text-sm text-center ${copied ? 'text-green-500 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'}`}>{message}</p>}
+            {message && <p className={`mt-2 text-sm text-center ${copied ? 'text-green-500 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'}`}>{message}</p>}
         </main>
     );
 }

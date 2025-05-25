@@ -91,24 +91,24 @@ export default function XmlFormatterPage() {
 
     return (
         <main className="flex-grow container mx-auto px-4 py-8">
-            <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">XML Formatter</h2>
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8 border border-gray-200 dark:border-gray-700">
-                <label htmlFor="xml-input" className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">Input XML</label>
-                <textarea id="xml-input" rows="10" value={xmlInput} onChange={(e) => setXmlInput(e.target.value)} placeholder="Paste your XML here..." className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-blue-500 focus:border-blue-500 resize-y font-mono text-sm" />
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">XML Formatter</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 mb-6 border border-gray-200 dark:border-gray-700">
+                <label htmlFor="xml-input" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Input XML</label>
+                <textarea id="xml-input" rows="10" value={xmlInput} onChange={(e) => setXmlInput(e.target.value)} placeholder="Paste your XML here..." className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-blue-500 focus:border-blue-500 resize-y font-mono text-sm" />
                 {error && <p className="mt-2 text-sm text-red-500 dark:text-red-400">{error}</p>}
-                <div className="mt-6 flex flex-wrap justify-center gap-4">
-                    <button onClick={handleFormat} className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 flex items-center"><ArrowPathIcon className="h-5 w-5 mr-2" /> Format XML</button>
-                    <button onClick={handleCopyOutput} disabled={!formattedXml || !!error} className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 flex items-center disabled:opacity-50 disabled:cursor-not-allowed">{copied ? <CheckCircleIcon className="h-5 w-5 mr-2" /> : <ClipboardDocumentIcon className="h-5 w-5 mr-2" />} Copy Formatted</button>
-                    <button onClick={handleClear} className="px-6 py-3 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 dark:bg-gray-600 dark:text-gray-100 dark:hover:bg-gray-500 flex items-center"><TrashIcon className="h-5 w-5 mr-2" /> Clear</button>
+                <div className="mt-4 flex flex-wrap justify-center gap-3">
+                    <button onClick={handleFormat} className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 flex items-center"><ArrowPathIcon className="h-5 w-5 mr-2" /> Format XML</button>
+                    <button onClick={handleCopyOutput} disabled={!formattedXml || !!error} className="px-4 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 flex items-center disabled:opacity-50 disabled:cursor-not-allowed">{copied ? <CheckCircleIcon className="h-5 w-5 mr-2" /> : <ClipboardDocumentIcon className="h-5 w-5 mr-2" />} Copy Formatted</button>
+                    <button onClick={handleClear} className="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 dark:bg-gray-600 dark:text-gray-100 dark:hover:bg-gray-500 flex items-center"><TrashIcon className="h-5 w-5 mr-2" /> Clear</button>
                 </div>
             </div>
             {formattedXml && !error && (
-                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700">
-                    <label htmlFor="xml-output" className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">Formatted XML</label>
-                    <pre id="xml-output" className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 h-80 md:h-96 overflow-auto font-mono text-sm">{formattedXml}</pre>
+                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 border border-gray-200 dark:border-gray-700">
+                    <label htmlFor="xml-output" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Formatted XML</label>
+                    <pre id="xml-output" className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 h-80 md:h-96 overflow-auto font-mono text-sm">{formattedXml}</pre>
                 </div>
             )}
-            {message && <p className={`mt-4 text-sm text-center ${copied ? 'text-green-500 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'}`}>{message}</p>}
+            {message && <p className={`mt-2 text-sm text-center ${copied ? 'text-green-500 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'}`}>{message}</p>}
         </main>
     );
 }

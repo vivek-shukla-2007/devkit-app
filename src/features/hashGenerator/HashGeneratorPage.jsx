@@ -68,18 +68,18 @@ export default function HashGeneratorPage() {
     const renderHashOutput = (label, hashValue, hashKey) => {
         return (
             <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">{label}</label>
+                <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">{label}</label>
                 <div className="mt-1 flex rounded-md shadow-sm">
                     <input
                         type="text"
                         readOnly
                         value={hashValue}
-                        className="flex-1 block w-full min-w-0 rounded-none rounded-l-md p-2 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 sm:text-sm focus:ring-indigo-500 focus:border-indigo-500"
+                        className="flex-1 block w-full min-w-0 rounded-none rounded-l-md p-2 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-xs sm:text-sm focus:ring-indigo-500 focus:border-indigo-500"
                     />
                     <button
                         onClick={() => handleCopyToClipboard(hashValue, hashKey)}
                         disabled={!hashValue}
-                        className="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-500 disabled:opacity-50"
+                        className="inline-flex items-center px-2.5 rounded-r-md border border-l-0 border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-500 disabled:opacity-50"
                     >
                         {copiedHash === hashKey ? <CheckCircleIcon className="h-5 w-5 text-green-500" /> : <ClipboardDocumentIcon className="h-5 w-5" />}
                     </button>
@@ -87,24 +87,21 @@ export default function HashGeneratorPage() {
             </div>
         );
     };
-
     return (
         <main className="flex-grow container mx-auto px-4 py-8">
-            <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">Hash Generator</h2>
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8 border border-gray-200 dark:border-gray-700">
-                <label htmlFor="input-text" className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">Input Text</label>
-                <textarea id="input-text" rows="5" value={inputText} onChange={(e) => setInputText(e.target.value)} placeholder="Enter text to hash..." className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-blue-500 focus:border-blue-500 resize-y font-mono text-sm" />
-                <div className="mt-6 flex flex-wrap justify-center gap-4">
-                    <button onClick={handleGenerateHashes} className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 flex items-center"><ArrowPathIcon className="h-5 w-5 mr-2" /> Generate Hashes</button>
-                    <button onClick={handleClear} className="px-6 py-3 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 dark:bg-gray-600 dark:text-gray-100 dark:hover:bg-gray-500 flex items-center"><TrashIcon className="h-5 w-5 mr-2" /> Clear</button>
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Hash Generator</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 mb-6 border border-gray-200 dark:border-gray-700">
+                <label htmlFor="input-text" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Input Text</label>
+                <textarea id="input-text" rows="5" value={inputText} onChange={(e) => setInputText(e.target.value)} placeholder="Enter text to hash..." className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-blue-500 focus:border-blue-500 resize-y font-mono text-sm" />
+                <div className="mt-4 flex flex-wrap justify-center gap-3">
+                    <button onClick={handleGenerateHashes} className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 flex items-center"><ArrowPathIcon className="h-5 w-5 mr-2" /> Generate Hashes</button>
+                    <button onClick={handleClear} className="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 dark:bg-gray-600 dark:text-gray-100 dark:hover:bg-gray-500 flex items-center"><TrashIcon className="h-5 w-5 mr-2" /> Clear</button>
                 </div>
             </div>
-
-            {message && <p className="my-4 text-sm text-center text-gray-600 dark:text-gray-400">{message}</p>}
-
+            {message && <p className="my-3 text-sm text-center text-gray-600 dark:text-gray-400">{message}</p>}
             {(hashes.md5 || hashes.sha1 || hashes.sha256 || hashes.sha512) && (
-                 <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700">
-                    <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-4">Generated Hashes</h3>
+                 <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 border border-gray-200 dark:border-gray-700">
+                    <h3 className="text-base font-medium text-gray-700 dark:text-gray-300 mb-3">Generated Hashes</h3>
                     {renderHashOutput("MD5", hashes.md5, "md5")}
                     {renderHashOutput("SHA-1", hashes.sha1, "sha1")}
                     {renderHashOutput("SHA-256", hashes.sha256, "sha256")}

@@ -121,12 +121,11 @@ function JsonFormatterPage() {
   };
   return (
     <main className="flex-grow container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">JSON Formatter & Validator</h2>
-      
+      <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">JSON Formatter & Validator</h2>
       {/* Input Section */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8 border border-gray-200 dark:border-gray-700">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300">Input JSON</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 mb-6 border border-gray-200 dark:border-gray-700">
+        <div className="flex justify-between items-center mb-2">
+          <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Input JSON</h3>
           <button
             onClick={() => setIsInputCollapsed(!isInputCollapsed)}
             className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
@@ -135,52 +134,48 @@ function JsonFormatterPage() {
             {isInputCollapsed ? <ChevronDownIcon className="h-5 w-5 text-gray-600 dark:text-gray-400" /> : <ChevronUpIcon className="h-5 w-5 text-gray-600 dark:text-gray-400" />}
           </button>
         </div>
-
         {!isInputCollapsed && (
           <textarea
             id="json-input"
             rows="10"
-            className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-blue-500 focus:border-blue-500 resize-y font-mono text-sm"
+            className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-blue-500 focus:border-blue-500 resize-y font-mono text-sm"
             value={inputJson}
             onChange={handleInputChange}
             placeholder='Paste your JSON string here...'
           />
         )}
-
         {error && (
-          <div className="mt-3 p-3 bg-red-100 border border-red-400 text-red-700 rounded-md dark:bg-red-900 dark:border-red-700 dark:text-red-300" role="alert">
+          <div className="mt-2 p-2 bg-red-100 border border-red-400 text-red-700 rounded-md dark:bg-red-900 dark:border-red-700 dark:text-red-300" role="alert">
             <p>{error}</p>
           </div>
         )}
-        {!error && formattedJson && !isInputCollapsed && <p className="mt-2 text-sm text-green-500 dark:text-green-400">JSON appears to be valid.</p>}
-
-        <div className="mt-6 flex flex-wrap justify-center gap-3 sm:gap-4">
+        {!error && formattedJson && !isInputCollapsed && <p className="mt-2 text-xs text-green-500 dark:text-green-400">JSON appears to be valid.</p>}
+        <div className="mt-4 flex flex-wrap justify-center gap-3">
             <button
                 onClick={loadSampleJson}
-                className="px-5 py-2.5 bg-indigo-500 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-200 flex items-center"
+                className="px-4 py-2 bg-indigo-500 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-200 flex items-center"
             >
                 <DocumentTextIcon className="h-5 w-5 mr-2" /> Load Sample
             </button>
             <button
                 onClick={handleMinifyJson}
-                className="px-5 py-2.5 bg-yellow-500 text-white font-semibold rounded-lg shadow-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-200 flex items-center"
+                className="px-4 py-2 bg-yellow-500 text-white font-semibold rounded-lg shadow-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-200 flex items-center"
             >
                 <MinusCircleIcon className="h-5 w-5 mr-2" /> Minify JSON
             </button>
             <button
                 onClick={handleClearAll}
-                className="px-5 py-2.5 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-200 dark:bg-gray-600 dark:text-gray-100 dark:hover:bg-gray-500 flex items-center"
+                className="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-200 dark:bg-gray-600 dark:text-gray-100 dark:hover:bg-gray-500 flex items-center"
             >
                 <TrashIcon className="h-5 w-5 mr-2" /> Clear All
             </button>
         </div>
       </div>
-
       {/* Output Section - Show if there's formatted JSON or a JSON object for tree view, and no critical error */}
       {(formattedJson || jsonObject) && !error && (
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700">
-          <div className="flex flex-wrap justify-between items-center mb-4 gap-2">
-            <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300">Formatted Output</h3>
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 border border-gray-200 dark:border-gray-700">
+          <div className="flex flex-wrap justify-between items-center mb-2 gap-2">
+            <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Formatted Output</h3>
             <div className="flex items-center gap-2">
               {/* View Mode Toggle */}
               <button
@@ -197,7 +192,6 @@ function JsonFormatterPage() {
               >
                 <ShareIcon className="h-5 w-5" />
               </button>
-
               {/* Tree View Controls - shown only in tree mode and if jsonObject exists */}
               {outputViewMode === 'tree' && jsonObject && (
                 <>
@@ -219,15 +213,13 @@ function JsonFormatterPage() {
               )}
             </div>
           </div>
-
           {outputViewMode === 'text' && formattedJson && (
-            <pre className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 h-80 md:h-96 overflow-auto font-mono text-sm">
+            <pre className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 h-80 md:h-96 overflow-auto font-mono text-sm">
               {formattedJson}
             </pre>
           )}
-
           {outputViewMode === 'tree' && jsonObject && (
-            <div className="p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 h-auto min-h-[20rem] md:min-h-[24rem] max-h-[40rem] overflow-auto text-sm">
+            <div className="p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 h-auto min-h-[20rem] md:min-h-[24rem] max-h-[40rem] overflow-auto text-sm">
               <ReactJson
                 src={jsonObject}
                 name={null} // No root name for the JSON object itself
@@ -241,18 +233,17 @@ function JsonFormatterPage() {
               />
             </div>
           )}
-
-          <div className="mt-6 flex flex-wrap justify-center gap-3 sm:gap-4">
+          <div className="mt-4 flex flex-wrap justify-center gap-3">
             <button
               onClick={() => handleCopyOutput(formattedJson)}
               disabled={!formattedJson}
-              className="px-5 py-2.5 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-200 flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-4 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-200 flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {copied ? <CheckCircleIcon className="h-5 w-5 mr-2" /> : <ClipboardDocumentIcon className="h-5 w-5 mr-2" />}
               Copy Formatted JSON
             </button>
           </div>
-          {message && <p className={`mt-3 text-sm text-center ${copied ? 'text-green-500 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'}`}>{message}</p>}
+          {message && <p className={`mt-2 text-sm text-center ${copied ? 'text-green-500 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'}`}>{message}</p>}
         </div>
       )}
     </main>

@@ -68,14 +68,13 @@ data_points:
 
     return (
         <main className="flex-grow container mx-auto px-4 py-8">
-            <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">YAML Validator</h2>
-
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8 border border-gray-200 dark:border-gray-700">
-                <label htmlFor="yaml-input" className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">Input YAML</label>
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">YAML Validator</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 mb-6 border border-gray-200 dark:border-gray-700">
+                <label htmlFor="yaml-input" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Input YAML</label>
                 <textarea
                     id="yaml-input"
                     rows="15"
-                    className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-blue-500 focus:border-blue-500 resize-y font-mono text-sm"
+                    className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-blue-500 focus:border-blue-500 resize-y font-mono text-sm"
                     value={yamlInput}
                     onChange={(e) => {
                         setYamlInput(e.target.value);
@@ -84,18 +83,16 @@ data_points:
                     }}
                     placeholder="Paste your YAML here..."
                 />
-
-                <div className="mt-6 flex flex-wrap justify-center gap-4">
-                    <button onClick={handleValidate} className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 flex items-center"><ArrowPathIcon className="h-5 w-5 mr-2" /> Validate YAML</button>
-                    <button onClick={loadSampleYaml} className="px-6 py-3 bg-indigo-500 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-600 flex items-center">
+                <div className="mt-4 flex flex-wrap justify-center gap-3">
+                    <button onClick={handleValidate} className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 flex items-center"><ArrowPathIcon className="h-5 w-5 mr-2" /> Validate YAML</button>
+                    <button onClick={loadSampleYaml} className="px-4 py-2 bg-indigo-500 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-600 flex items-center">
                         <DocumentTextIcon className="h-5 w-5 mr-2" /> Load Sample
                     </button>
-                    <button onClick={handleClear} className="px-6 py-3 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 dark:bg-gray-600 dark:text-gray-100 dark:hover:bg-gray-500 flex items-center"><TrashIcon className="h-5 w-5 mr-2" /> Clear</button>
+                    <button onClick={handleClear} className="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 dark:bg-gray-600 dark:text-gray-100 dark:hover:bg-gray-500 flex items-center"><TrashIcon className="h-5 w-5 mr-2" /> Clear</button>
                 </div>
             </div>
-
             {errorMessage && (
-                <div className={`mt-4 p-4 rounded-md flex items-center ${validationResult === 'valid' ? 'bg-green-100 dark:bg-green-900' : validationResult === 'invalid' ? 'bg-red-100 dark:bg-red-900' : 'bg-gray-100 dark:bg-gray-700'}`}>
+                <div className={`mt-2 p-3 rounded-md flex items-center ${validationResult === 'valid' ? 'bg-green-100 dark:bg-green-900' : validationResult === 'invalid' ? 'bg-red-100 dark:bg-red-900' : 'bg-gray-100 dark:bg-gray-700'}`}>
                     <StatusIcon />
                     <p className={`text-sm ${getStatusColor()}`}>{errorMessage}</p>
                 </div>

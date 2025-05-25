@@ -48,26 +48,25 @@ export default function UuidGeneratorPage() {
 
     return (
         <main className="flex-grow container mx-auto px-4 py-8 flex flex-col items-center">
-            <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">UUID/GUID Generator</h2>
-
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700 w-full max-w-2xl">
-                <div className="mb-6">
-                    <label htmlFor="uuid-output" className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">Generated UUID (v4):</label>
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4 text-center">UUID/GUID Generator</h2> {/* text-center is fine for this specific page layout */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 border border-gray-200 dark:border-gray-700 w-full max-w-md">
+                <div className="mb-4">
+                    <label htmlFor="uuid-output" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Generated UUID (v4):</label>
                     <input
                         id="uuid-output"
                         type="text"
                         readOnly
                         value={generatedUuid}
-                        className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 font-mono text-center text-lg"
+                        className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 font-mono text-center text-sm"
                     />
                 </div>
-                <div className="flex flex-col sm:flex-row justify-center gap-4">
-                    <button onClick={generateNewUuid} className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 flex items-center justify-center"><ArrowPathIcon className="h-5 w-5 mr-2" /> Generate New UUID</button>
-                    <button onClick={handleCopyToClipboard} disabled={!generatedUuid} className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed">
+                <div className="flex flex-col sm:flex-row justify-center gap-3">
+                    <button onClick={generateNewUuid} className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 flex items-center justify-center"><ArrowPathIcon className="h-5 w-5 mr-2" /> Generate New UUID</button>
+                    <button onClick={handleCopyToClipboard} disabled={!generatedUuid} className="px-4 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed">
                         {copied ? <CheckCircleIcon className="h-5 w-5 mr-2" /> : <ClipboardDocumentIcon className="h-5 w-5 mr-2" />} Copy UUID
                     </button>
                 </div>
-                {message && <p className={`mt-6 text-sm text-center ${copied ? 'text-green-500 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'}`}>{message}</p>}
+                {message && <p className={`mt-3 text-sm text-center ${copied ? 'text-green-500 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'}`}>{message}</p>}
             </div>
         </main>
     );
