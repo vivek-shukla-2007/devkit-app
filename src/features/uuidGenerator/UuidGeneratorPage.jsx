@@ -48,7 +48,7 @@ export default function UuidGeneratorPage() {
 
     return (
         <main className="flex-grow container mx-auto px-4 py-8 flex flex-col items-center">
-            <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4 text-center">UUID/GUID Generator</h2> {/* text-center is fine for this specific page layout */}
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4 text-center">UUID/GUID Generator</h2>
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 border border-gray-200 dark:border-gray-700 w-full max-w-md">
                 <div className="mb-4">
                     <label htmlFor="uuid-output" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Generated UUID (v4):</label>

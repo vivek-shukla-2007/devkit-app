@@ -53,46 +53,46 @@ export default function LoremIpsumGeneratorPage() {
     };
 
     // Generate initial text on load
-    useState(() => {
+    useState(() => { // This should be useEffect for side effects like initial data load
         generateText();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <main className="flex-grow container mx-auto px-4 py-8">
-            <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">Lorem Ipsum Generator</h2>
-
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8 border border-gray-200 dark:border-gray-700">
-                <div className="mb-6 flex flex-col sm:flex-row items-center gap-4">
-                    <label htmlFor="num-paragraphs" className="text-lg font-medium text-gray-700 dark:text-gray-300">Number of Paragraphs:</label>
-                    <input
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Lorem Ipsum Generator</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 mb-6 border border-gray-200 dark:border-gray-700">
+                <div className="mb-4 flex flex-col sm:flex-row items-center gap-3">
+                    <label htmlFor="num-paragraphs" className="text-sm font-medium text-gray-700 dark:text-gray-300">Number of Paragraphs:</label>
+                     <input
                         type="number"
                         id="num-paragraphs"
                         value={numParagraphs}
                         onChange={(e) => setNumParagraphs(Math.max(1, parseInt(e.target.value, 10) || 1))}
                         min="1"
-                        className="w-24 p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-blue-500 focus:border-blue-500"
-                    />
-                    <button onClick={generateText} className="px-6 py-2.5 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 flex items-center"><ArrowPathIcon className="h-5 w-5 mr-2" /> Generate</button>
+                        className="w-20 p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                   />
+                   <button onClick={generateText} className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 flex items-center"><ArrowPathIcon className="h-5 w-5 mr-2" /> Generate</button>
                 </div>
 
                 {generatedText && (
                     <div className="mb-4">
-                        <label htmlFor="lorem-output" className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">Generated Text:</label>
-                        <textarea
+                    <label htmlFor="lorem-output" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Generated Text:</label>
+                       <textarea
                             id="lorem-output"
                             rows="12"
                             readOnly
                             value={generatedText}
-                            className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 resize-y font-serif text-base"
+                            className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 resize-y font-serif text-sm"
                         />
                     </div>
                 )}
-                <div className="mt-6 flex justify-center">
-                    <button onClick={handleCopyToClipboard} disabled={!generatedText} className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 flex items-center disabled:opacity-50 disabled:cursor-not-allowed">
+                <div className="mt-4 flex justify-center">
+                    <button onClick={handleCopyToClipboard} disabled={!generatedText} className="px-4 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 flex items-center disabled:opacity-50 disabled:cursor-not-allowed">
                         {copied ? <CheckCircleIcon className="h-5 w-5 mr-2" /> : <ClipboardDocumentIcon className="h-5 w-5 mr-2" />} Copy Text
                     </button>
                 </div>
-                 {message && <p className={`mt-4 text-sm text-center ${copied ? 'text-green-500 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'}`}>{message}</p>}
+                 {message && <p className={`mt-3 text-sm text-center ${copied ? 'text-green-500 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'}`}>{message}</p>}
             </div>
         </main>
     );
