@@ -359,6 +359,9 @@ function App() {
     // Effect to update page title and meta description
     // This effect also handles initial URL setting on page load if currentPage was derived from path
     useEffect(() => {
+        // Scroll to top whenever the page changes
+        window.scrollTo(0, 0);
+
         // Update browser URL if it doesn't match currentPage
         // This ensures direct navigation or refresh loads the correct view and URL
         const currentPathInBrowser = window.location.pathname.replace(/^\//, '') || 'home';
@@ -387,6 +390,8 @@ function App() {
         const handlePopState = (event) => {
             // When browser back/forward is used, event.state might be null or contain our state
             const path = window.location.pathname.replace(/^\//, '') || 'home';
+            // Scroll to top on popstate as well
+            window.scrollTo(0, 0);
             setCurrentPage(path);
         };
 

@@ -9,33 +9,30 @@ export default function HomePage({ toolData, onNavigate, searchTerm, onSearchCha
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-purple-500 to-indigo-600 dark:from-purple-700 dark:to-indigo-800 text-white py-16 px-4 sm:px-6 lg:px-8 text-center rounded-lg my-8 mx-4 md:mx-auto max-w-6xl shadow-xl">
-        <h2 className="text-4xl sm:text-5xl font-extrabold mb-4 leading-tight">
+      {/* Hero Section - Revised for better alignment */}
+      <section className="py-8 md:py-10 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 dark:from-purple-700 dark:via-pink-600 dark:to-red-600 text-white text-center rounded-b-xl shadow-xl flex flex-col items-center justify-center">
+        <h2 className="text-3xl sm:text-4xl font-bold leading-tight mb-6"> {/* Title is visible and smaller */}
           Your Essential Online Dev Tools
         </h2>
-        <p className="text-lg sm:text-xl mb-8 opacity-90">
-          Fast, Free, and Reliable Utilities for Everyday Coding Tasks.
-        </p>
-        <div className="max-w-xl mx-auto">
+        {/* Search Bar - Inside Hero, below title */}
+        <div className="w-full max-w-xl px-4">
           <div className="relative">
             <input
               type="text"
-              placeholder="Search for a tool (e.g., JSON, Date, Regex)..."
-              className="w-full p-3 pl-10 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-300 shadow-lg"
+              placeholder="Search for a tool (e.g., JSON, Date...)" // Standard search placeholder
+              className="w-full p-3 pl-10 rounded-full text-gray-800 dark:text-gray-200 bg-white/80 dark:bg-gray-700/80 backdrop-blur-sm border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400 shadow-lg placeholder-gray-500 dark:placeholder-gray-400"
               value={searchTerm}
               onChange={onSearchChange}
             />
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <i className="fas fa-search text-gray-400"></i>
+              <i className="fas fa-search text-gray-400 dark:text-gray-500"></i>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Tools Grid */}
-      <main className="flex-grow container mx-auto px-4 py-8">
-        <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-10">Explore Our Tools</h2>
+      {/* Tools Grid Section */}
+      <main className="flex-grow container mx-auto px-4 py-6 md:py-8">
         {filteredTools.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredTools.map(tool => (
