@@ -12,7 +12,7 @@ export default function HomePage({ toolData, onNavigate, searchTerm, onSearchCha
       {/* Hero Section - Revised for better alignment */}
       <section className="py-8 md:py-10 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 dark:from-purple-700 dark:via-pink-600 dark:to-red-600 text-white text-center rounded-b-xl shadow-xl flex flex-col items-center justify-center">
         <h2 className="text-3xl sm:text-4xl font-bold leading-tight mb-6"> {/* Title is visible and smaller */}
-          Your Essential Online Dev Tools
+          Your Essential Online Dev Gear Hub
         </h2>
         {/* Search Bar - Inside Hero, below title */}
         <div className="w-full max-w-xl px-4">
@@ -25,7 +25,10 @@ export default function HomePage({ toolData, onNavigate, searchTerm, onSearchCha
               onChange={onSearchChange}
             />
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <i className="fas fa-search text-gray-400 dark:text-gray-500"></i>
+              {/* Replaced Font Awesome icon with inline SVG for better self-containment */}
+              <svg className="h-5 w-5 text-gray-400 dark:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fillRule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clipRule="evenodd" />
+              </svg>
             </div>
           </div>
         </div>
@@ -46,7 +49,7 @@ export default function HomePage({ toolData, onNavigate, searchTerm, onSearchCha
 
       {/* Why Choose DevKit Section */}
       <section className="bg-gray-100 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8 text-center mt-12 rounded-lg mx-4 md:mx-auto max-w-6xl shadow-inner">
-        <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Why Choose DevKit?</h3>
+        <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Why Choose Dev Gear Hub?</h3>
         <div className="flex flex-col md:flex-row justify-center items-start md:space-x-8 space-y-6 md:space-y-0">
           <div className="flex flex-col items-center">
             <i className="fas fa-bolt text-purple-500 text-3xl mb-3"></i>
