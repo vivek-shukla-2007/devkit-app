@@ -30,6 +30,7 @@ import NumberBaseConverterPage from './features/numberBaseConverter/NumberBaseCo
 import ColorConverterPage from './features/colorConverter/ColorConverterPage';
 import SqlFormatterPage from './features/sqlFormatter/SqlFormatterPage';
 import LoremIpsumGeneratorPage from './features/loremIpsumGenerator/LoremIpsumGeneratorPage';
+import PassportPhotoMakerPage from './features/passportPhotoMaker/PassportPhotoMakerPage';
 
 import CookieBanner from './components/CookieBanner';
 import HomePage from './components/home/HomePage'; // Moved HomePage
@@ -151,6 +152,10 @@ const pageMetadata = {
   'lorem-ipsum-generator': {
     title: 'Lorem Ipsum Generator - Placeholder Text | Dev Gear Hub',
     description: 'Generate Lorem Ipsum placeholder text for your designs and mockups. Specify the number of paragraphs needed on DevGearHub.',
+  },
+  'passport-photo-maker': {
+    title: 'Passport Photo Maker - Create & Print Online | Dev Gear Hub',
+    description: 'Create professional passport photos online for free. Support for USA, UK, India, and more. Client-side processing for maximum privacy.',
   }
   
 
@@ -283,12 +288,19 @@ const toolData = [
     icon: <i className="fas fa-database text-3xl text-blue-400"></i>,
     category: "Data Converters"
   },
-  {
+{
     id: 'lorem-ipsum-generator',
     name: 'Lorem Ipsum Generator',
-    description: "Generate placeholder text for designs and mockups.",
+    description: 'Generate placeholder text for designs and mockups.',
     icon: <i className="fas fa-paragraph text-3xl text-teal-400"></i>,
     category: "Text Manipulation"
+  },
+  {
+    id: 'passport-photo-maker',
+    name: 'Passport Photo Maker',
+    description: 'Create and format passport photos for various countries.',
+    icon: <i className="fas fa-id-card text-3xl text-indigo-600"></i>,
+    category: "Utilities"
   },
   {
     id: 'jwt-decoder',
@@ -507,7 +519,9 @@ function App() {
             case 'sql-formatter':
                 return <SqlFormatterPage />;
             case 'lorem-ipsum-generator':
-                return <LoremIpsumGeneratorPage />;          
+                return <LoremIpsumGeneratorPage />;
+            case 'passport-photo-maker':
+                return <PassportPhotoMakerPage />;          
             default:
                 return null;
         }
