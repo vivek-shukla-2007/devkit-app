@@ -25,7 +25,12 @@ const PHOTO_SPECS = [
 
 const PAPER_SIZES = [
     { id: 'a4', name: 'A4 (210×297 mm)', width: 210, height: 297 },
+    { id: 'a5', name: 'A5 (148×210 mm)', width: 148, height: 210 },
+    { id: 'a6', name: 'A6 (105×148 mm)', width: 105, height: 148 },
     { id: '4x6', name: '4×6 inch (102×152 mm)', width: 102, height: 152 },
+    { id: '5x7', name: '5×7 inch (127×178 mm)', width: 127, height: 178 },
+    { id: '8x10', name: '8×10 inch (203×254 mm)', width: 203, height: 254 },
+    { id: 'letter', name: 'Letter (216×279 mm)', width: 216, height: 279 },
 ];
 
 export default function PassportPhotoMakerPage() {
@@ -342,21 +347,15 @@ export default function PassportPhotoMakerPage() {
                         </div>
                         <div className="mb-6">
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Paper Size:</label>
-                            <div className="grid grid-cols-2 gap-2">
+                            <select 
+                                value={selectedPaper.id}
+                                onChange={(e) => setSelectedPaper(PAPER_SIZES.find(p => p.id === e.target.value))}
+                                className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 p-3"
+                            >
                                 {PAPER_SIZES.map(paper => (
-                                    <button
-                                        key={paper.id}
-                                        onClick={() => setSelectedPaper(paper)}
-                                        className={`px-4 py-2 text-sm rounded-lg border transition-all ${
-                                            selectedPaper.id === paper.id 
-                                            ? 'bg-purple-50 dark:bg-purple-900/20 border-purple-600 text-purple-600 dark:text-purple-400' 
-                                            : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-purple-300'
-                                        }`}
-                                    >
-                                        {paper.name}
-                                    </button>
+                                    <option key={paper.id} value={paper.id}>{paper.name}</option>
                                 ))}
-                            </div>
+                            </select>
                         </div>
                         <button 
                             onClick={downloadMultiple}

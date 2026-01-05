@@ -31,6 +31,7 @@ import ColorConverterPage from './features/colorConverter/ColorConverterPage';
 import SqlFormatterPage from './features/sqlFormatter/SqlFormatterPage';
 import LoremIpsumGeneratorPage from './features/loremIpsumGenerator/LoremIpsumGeneratorPage';
 import PassportPhotoMakerPage from './features/passportPhotoMaker/PassportPhotoMakerPage';
+import BackgroundRemoverPage from './features/backgroundRemover/BackgroundRemoverPage';
 
 import CookieBanner from './components/CookieBanner';
 import HomePage from './components/home/HomePage'; // Moved HomePage
@@ -156,6 +157,10 @@ const pageMetadata = {
   'passport-photo-maker': {
     title: 'Passport Photo Maker - Create & Print Online | Dev Gear Hub',
     description: 'Create professional passport photos online for free. Support for USA, UK, India, and more. Client-side processing for maximum privacy.',
+  },
+  'background-remover': {
+    title: 'Background Image Remover - Remove BG Online | Dev Gear Hub',
+    description: 'Remove image backgrounds instantly with client-side processing. Download as PNG with transparent background or JPG with white background.',
   }
   
 
@@ -301,6 +306,13 @@ const toolData = [
     description: 'Create and format passport photos for various countries.',
     icon: <i className="fas fa-id-card text-3xl text-indigo-600"></i>,
     category: "Utilities"
+  },
+  {
+    id: 'background-remover',
+    name: 'Background Remover',
+    description: 'Remove image backgrounds instantly with intelligent color detection.',
+    icon: <i className="fas fa-wand-magic-sparkles text-3xl text-cyan-500"></i>,
+    category: "Image Processing"
   },
   {
     id: 'jwt-decoder',
@@ -521,7 +533,9 @@ function App() {
             case 'lorem-ipsum-generator':
                 return <LoremIpsumGeneratorPage />;
             case 'passport-photo-maker':
-                return <PassportPhotoMakerPage />;          
+                return <PassportPhotoMakerPage />;
+            case 'background-remover':
+                return <BackgroundRemoverPage />;          
             default:
                 return null;
         }
