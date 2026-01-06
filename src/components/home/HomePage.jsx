@@ -1,5 +1,6 @@
 import React from 'react';
 import ToolCard from './ToolCard'; // Import ToolCard
+import SEOHelmet from '../SEOHelmet';
 
 export default function HomePage({ toolData, onNavigate, searchTerm, onSearchChange }) {
   const filteredTools = toolData.filter(tool =>
@@ -9,11 +10,17 @@ export default function HomePage({ toolData, onNavigate, searchTerm, onSearchCha
 
   return (
     <>
+      <SEOHelmet 
+        title="Free Online Developer Tools"
+        description="DevGear Hub offers free, fast, and privacy-focused online developer tools. Convert formats, validate code, generate IDs, and more. All processing happens in your browser."
+        keywords="developer tools, online converters, JSON formatter, CSV converter, base64 encoder, regex tester, free tools"
+        canonical="https://devgearhub.com/"
+      />
       {/* Hero Section - Revised for better alignment */}
       <section className="py-8 md:py-10 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 dark:from-purple-700 dark:via-pink-600 dark:to-red-600 text-white text-center rounded-b-xl shadow-xl flex flex-col items-center justify-center">
-        <h2 className="text-3xl sm:text-4xl font-bold leading-tight mb-6"> {/* Title is visible and smaller */}
+        <h1 className="text-3xl sm:text-4xl font-bold leading-tight mb-6"> {/* Changed from h2 to h1 for SEO */}
           Your Essential Online Dev Gear Hub
-        </h2>
+        </h1>
         {/* Search Bar - Inside Hero, below title */}
         <div className="w-full max-w-xl px-4">
           <div className="relative">
@@ -36,6 +43,7 @@ export default function HomePage({ toolData, onNavigate, searchTerm, onSearchCha
 
       {/* Tools Grid Section */}
       <main className="flex-grow container mx-auto px-4 py-6 md:py-8">
+        <h2 className="sr-only">Available Developer Tools</h2>
         {filteredTools.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredTools.map(tool => (
@@ -49,7 +57,7 @@ export default function HomePage({ toolData, onNavigate, searchTerm, onSearchCha
 
       {/* Why Choose DevKit Section */}
       <section className="bg-gray-100 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8 text-center mt-12 rounded-lg mx-4 md:mx-auto max-w-6xl shadow-inner">
-        <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Why Choose Dev Gear Hub?</h3>
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Why Choose Dev Gear Hub?</h2>
         <div className="flex flex-col md:flex-row justify-center items-start md:space-x-8 space-y-6 md:space-y-0">
           <div className="flex flex-col items-center">
             <i className="fas fa-bolt text-purple-500 text-3xl mb-3"></i>
